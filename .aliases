@@ -1,0 +1,2 @@
+alias ls="lsd -Fl"
+alias lt="lsd --tree --depth 3"
