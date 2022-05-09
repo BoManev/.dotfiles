@@ -1,7 +1,7 @@
 #<========Definitions========>
 #
 # define workspaces
-set $ws1 "1: terminals"
+set $ws1 "1: terms"
 set $ws2 "2: code:"
 set $ws3 "3: brave"
 set $ws4 "4:"
@@ -10,7 +10,7 @@ set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
 set $ws9 "9:"
-set $ws10 "10: Chat"
+set $ws10 "10: chat"
 
 
 #<========General========>
@@ -26,7 +26,9 @@ gaps outer 15
 # On startup (_always on restrt)
 #
 exec discord
-exec picom  --config ~/.dotfiles/i3/picom.conf
+exec code
+# switch to another backend (or build next branch)
+#exec picom  --config ~/.dotfiles/i3/picom.conf
 exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -37,6 +39,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # use xprop to find class name
 # 
 assign [class="discord"] $ws10
+assign [class="code"] $ws2
 
 
 #<========Appearance========>
@@ -54,6 +57,7 @@ client.background       #F8F8F2
 #<========Applets========>
 #
 exec --no-startup-id nm-applet
+exec blueberry-tray
 
 
 #<========Bar========>
@@ -101,7 +105,7 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec dmenu_run
 
