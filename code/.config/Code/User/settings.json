@@ -25,8 +25,11 @@
 		"terminal.foreground": "#abb2bf",
 		"terminal.selectionBackground": "#abb2bf30",
 		"terminal.integrated.fontFamily": "MesloLGS NF",
+		"titleBar.activeBackground": "#191919cc",
+        "titleBar.activeForeground":"#ffffff",
 		
     },
+	"window.titleBarStyle": "custom",
 	//Fix contrast around powerlv10k prompt  
 	"terminal.integrated.minimumContrastRatio": 1,
     //Nerd Fonts
@@ -43,6 +46,7 @@
     "latex-workshop.view.pdf.viewer": "tab",
     "[solidity]": {},
 	"window.zoomLevel": 1,
+	"color-highlight.markerType": "dot-after",
 	
 }
  
