@@ -27,9 +27,9 @@ if ($status eq 'Charging') {
 	$full_text = ' ﮣ';
 } elsif ($status eq 'Discharging') {
 	if ($percent < 20) {
-		$full_text = ' ';
+		$full_text = '  ';
 	} elsif ($percent < 40) {
-		$full_text = ' ';
+		$full_text = '  ';
 	} elsif ($percent < 60) {
 		$full_text = '  ';
 	} elsif ($percent < 80) {

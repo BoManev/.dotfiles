@@ -1,0 +1,2 @@
+set $mod Mod4
+bindsym $mod+Shift+r obsidian
