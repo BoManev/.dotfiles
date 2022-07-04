@@ -31,11 +31,8 @@ exec discord
 exec code
 exec picom --experimental-backends -b --config ~/.dotfiles/picom.conf
 exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
-exec_always ~/.dotfiles/scripts/polybar.sh
-# exec_always --no-startup-id ~/.dotfiles/i3/polybar.sh
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec_always --no-startup-id ~/.dotfiles/scripts/polybar.sh
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
 
 #<========Assignments========>
 # use xprop to find class name
@@ -43,7 +40,6 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 assign [class="discord"] $ws10
 assign [class="Joplin"] $ws9
 assign [class="Spotify"] $ws9
-
 
 #<========Appearance========>
 # system fonts config use lxappearance
@@ -56,47 +52,32 @@ client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 
-
 #<========Applets========>
 #
 exec --no-startup-id nm-applet
 exec blueberry-tray
 exec flameshot
 
+#<========Floating========>
+#
+for_window [class="Blueberry"] floating enable
+
+#<========Macros========>
+#
+set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
 
 #<========KeyBinds========>
 #
 set $mod Mod4
 floating_modifier $mod
 
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace $ws10
-
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
-bindsym $mod+Shift+d exec i3-dmenu-desktop
+bindsym $mod+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -b -fn "MesloLGS NF-13"" 
 bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
-bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh                                                                                                                                                                                                      
-
+bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh  
+bindsym $mod+b exec --no-startup-id blueberry
+bindsym $mod+Shift+l exec --no-startup-id --no-startup-id $i3lockwall
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -154,4 +135,25 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 

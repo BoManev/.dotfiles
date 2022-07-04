@@ -1,2 +1,6 @@
 alias ls="lsd -Fl"
 alias lt="lsd --tree --depth 3"
+alias python="python3"
+alias sysinfo="inxi -Fxz"
+alias ts-node="npx ts-node"
+alias hardhat="npx hardhat"
