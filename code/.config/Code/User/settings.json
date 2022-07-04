@@ -1,6 +1,9 @@
 {
   "workbench.colorTheme": "SynthWave '84",
   "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "Fira Code", 
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontFamily": "MesloLGS NF",
   //Overwrite terminal color schema <- One Dark Pro
   "workbench.colorCustomizations": {
     "terminal.ansiBlack": "#3f4451",
@@ -23,15 +26,13 @@
     "terminal.border": "#3e4452",
     "terminal.foreground": "#abb2bf",
     "terminal.selectionBackground": "#abb2bf30",
-    "terminal.integrated.fontFamily": "MesloLGS NF",
     "titleBar.activeBackground": "#191919cc",
     "titleBar.activeForeground": "#ffffff"
   },
   "window.titleBarStyle": "custom",
   //Fix contrast around powerlv10k prompt
-  "terminal.integrated.minimumContrastRatio": 1,
-  //Nerd Fonts
-  "editor.fontFamily": "MesloLGS NF",
+  "terminal.integrated.minimumContrastRatio": 1, 
+
   //Bracket Pair Colorizer
   "bracket-pair-colorizer-2.colors": ["Gold", "Orchid", "LightSkyBlue"],
   "editor.bracketPairColorization.enabled": true,
@@ -51,5 +52,8 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.userWords": ["Lootbox"]
+  "cSpell.userWords": [
+    "Lootbox"
+  ],
+  "explorer.confirmDelete": false
 }
