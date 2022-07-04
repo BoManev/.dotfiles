@@ -1,45 +1,48 @@
 #<========Definitions========>
 #
 # define workspaces
-set $ws1 "1: terms"
-set $ws2 "2: code:"
-set $ws3 "3: brave"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10: chat"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 
-#<========General========>
-#
+# #<========General========>
+# #
 for_window [class=".*"] border pixel 0
-#gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
-#workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
+# # #gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
+# # #workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
 gaps inner 15 
 gaps outer 15
 
+# hide_edge_borders smart
+# smart_gaps on
 
 #<========StartUp========>
 # On startup (_always on restrt)
 #
 exec discord
 exec code
-# switch to another backend (or build next branch)
-exec_always picom --experimental-backends -b --config ~/.dotfiles/i3/picom.conf
+exec picom --experimental-backends -b --config ~/.dotfiles/picom.conf
 exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
+exec_always ~/.dotfiles/scripts/polybar.sh
+# exec_always --no-startup-id ~/.dotfiles/i3/polybar.sh
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
 
 #<========Assignments========>
 # use xprop to find class name
 # 
 assign [class="discord"] $ws10
-assign [class="code"] $ws2
+assign [class="Joplin"] $ws9
+assign [class="Spotify"] $ws9
 
 
 #<========Appearance========>
@@ -59,24 +62,6 @@ client.background       #F8F8F2
 exec --no-startup-id nm-applet
 exec blueberry-tray
 exec flameshot
-
-
-#<========Bar========>
-#
-bar {
-        status_command i3blocks -c ~/.dotfiles/i3/i3blocks/i3blocks.conf
-        colors {
-                background #282A36
-                statusline #F8F8F2
-                separator  #44475A
-
-                focused_workspace  #44475A #44475A #F8F8F2
-                active_workspace   #282A36 #44475A #F8F8F2
-                inactive_workspace #282A36 #282A36 #BFBFBF
-                urgent_workspace   #FF5555 #FF5555 #F8F8F2
-                binding_mode       #FF5555 #FF5555 #F8F8F2
-        }
-}
 
 
 #<========KeyBinds========>
@@ -106,10 +91,12 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+Return exec ~/.local/kitty.app/bin/kitty --detach
-bindsym $mod+Return+Return exec gnome-terminal
+bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec dmenu_run
+bindsym $mod+Shift+d exec i3-dmenu-desktop
+bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
+bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh                                                                                                                                                                                                      
+
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -166,4 +153,5 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 

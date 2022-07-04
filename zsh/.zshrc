@@ -3,7 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=$HOME/bin:/usr/local/bin:/home/bo/anaconda3/bin:/home/bo/.foundry/bin:$HOME/.local/kitty.app/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/home/bo/.foundry/bin:$PATH
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -25,3 +25,5 @@ export NVM_DIR="$HOME/.nvm"
 
 
 
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,4 +1,4 @@
 // Add new package 
-stow --adpot -nvt ~ [name]
+stow --adopt -nvt ~ [name]
 // Link package
 stow -nvt ~ [name]
