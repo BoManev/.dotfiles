@@ -1,6 +1,6 @@
 {
-  "workbench.colorTheme": "SynthWave '84",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.iconTheme": "gruvbox-material-icon-theme",
   "editor.fontFamily": "Fira Code", 
   "editor.fontLigatures": true,
   "terminal.integrated.fontFamily": "MesloLGS NF",
@@ -33,27 +33,22 @@
   //Fix contrast around powerlv10k prompt
   "terminal.integrated.minimumContrastRatio": 1, 
 
-  //Bracket Pair Colorizer
-  "bracket-pair-colorizer-2.colors": ["Gold", "Orchid", "LightSkyBlue"],
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
-  "bracket-pair-colorizer-2.depreciation-notice": false,
   "latex-workshop.view.pdf.viewer": "tab",
   "[solidity]": {},
   "color-highlight.markerType": "dot-after",
   "terminal.integrated.scrollback": 100000,
+  
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "window.zoomLevel": 2,
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.userWords": [
-    "Lootbox"
-  ],
-  "explorer.confirmDelete": false
+  "explorer.confirmDelete": false,
+  "window.zoomLevel": 2
 }

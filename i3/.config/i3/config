@@ -73,7 +73,7 @@ floating_modifier $mod
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
-bindsym $mod+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -b -fn "MesloLGS NF-13"" 
+bindsym $mod+Shift+d exec i3-dmenu-desktop  
 bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
 bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh  
 bindsym $mod+b exec --no-startup-id blueberry
