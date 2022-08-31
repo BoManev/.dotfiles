@@ -39,16 +39,24 @@
   "[solidity]": {},
   "color-highlight.markerType": "dot-after",
   "terminal.integrated.scrollback": 100000,
-  
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "files.associations": {
+    "**/i3/config": "i3",
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  "prettier.requireConfig": true,
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[jsonc]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
+  // "[json]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
   "explorer.confirmDelete": false,
   "window.zoomLevel": 1
 }

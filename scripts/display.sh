@@ -42,9 +42,9 @@ fi
 
 # xrander will run and turn on the display you want, if you have an option for 3 displays, this will need some modifications
 case "$chosen" in
-    external) xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --mode 3440x1440 --pos 0x0 --rotate normal --primary;;
+    external) xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --mode 3440x1440 --pos 0x0 --rotate normal --primary ;;
     laptop) xrandr --output $INTERNAL_OUTPUT --auto --primary --output $EXTERNAL_OUTPUT --off ;;
     clone) xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --same-as $INTERNAL_OUTPUT ;;
-    dual) xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --right-of $INTERNAL_OUTPUT --primary ;;
+    dual) xrandr --output $EXTERNAL_OUTPUT --mode 3440x1440 --pos 0x0 --rotate normal --primary --output $INTERNAL_OUTPUT --auto --below $EXTERNAL_OUTPUT ;;
 
 esac

@@ -1,6 +1,26 @@
-#<========Definitions========>
+#<========Init========>
 #
-# define workspaces
+exec discord
+exec code
+exec picom --experimental-backends -b --config ~/.dotfiles/picom.conf
+exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
+exec_always --no-startup-id ~/.dotfiles/scripts/polybar.sh
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
+exec --no-startup-id nm-applet
+exec flameshot
+
+#<========General========>
+#
+
+set $mod Mod4
+floating_modifier $mod
+gaps inner 15 
+gaps outer 15
+smart_gaps on
+
+#<========Workspaces========>
+#
+
 set $ws1 "1:I"
 set $ws2 "2:II"
 set $ws3 "3:III"
@@ -12,35 +32,14 @@ set $ws8 "8:VIII"
 set $ws9 "9:IX"
 set $ws10 "10:X"
 
-
-#<========General========>
-#
-for_window [class=".*"] border pixel 0
-# gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
-# workspace <ws> gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
-gaps inner 15 
-gaps outer 15
-smart_gaps on
-
-#<========StartUp========>
-# On startup (_always on restrt)
-#
-exec discord
-exec code
-exec picom --experimental-backends -b --config ~/.dotfiles/picom.conf
-exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
-exec_always --no-startup-id ~/.dotfiles/scripts/polybar.sh
-exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
-
-#<========Assignments========>
-# use xprop to find class name
-# 
 assign [class="discord"] $ws10
-assign [class="Joplin"] $ws9
-assign [class="Spotify"] $ws9
+
+for_window [class=".*"] border pixel 0
+for_window [class="Blueberry"] floating enable
+for_window [class="Pavucontrol"] floating enable
 
 #<========Appearance========>
-# system fonts config use lxappearance
+# lxappearance for sys fonts
 #
 font pango: MesloLGS NF 12
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
@@ -50,76 +49,45 @@ client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 
-#<========Applets========>
-#
-exec --no-startup-id nm-applet
-exec flameshot
-
-#<========Floating========>
-#
-for_window [class="Blueberry"] floating enable
-for_window [class="Pavucontrol"] floating enable
 
 #<========Macros========>
 #
 set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
 
+
+#<========Custom KB========>
+#
+
 #<========KeyBinds========>
 #
-set $mod Mod4
-floating_modifier $mod
-
-bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+q kill
-bindsym $mod+Shift+d exec i3-dmenu-desktop  
-bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
-bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh  
+# Custom
 bindsym $mod+b exec --no-startup-id blueberry
 bindsym $mod+c exec --no-startup-id pavucontrol
 bindsym $mod+Shift+l exec --no-startup-id --no-startup-id $i3lockwall
-
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
+bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh 
+# General
+bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+d exec i3-dmenu-desktop 
+bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
+bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
 bindsym $mod+a focus parent
-
 # Use amixer to adjust volume in PulseAudio.
 set $refresh_i3blcks pkill -RTMIN+1 i3blocks
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && $refresh_i3blcks 
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && $refresh_i3blcks 
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && $refresh_i3blcks 
-
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ 
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- 
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle 
+# Focus
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -130,7 +98,11 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# Movements
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -141,4 +113,11 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+
 
