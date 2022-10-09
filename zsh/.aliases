@@ -14,6 +14,7 @@ alias sysinfo="inxi -Fxz"
 # +------+
 
 alias ls="lsd -Fl"
+alias lsa="lsd -Fl -a"
 alias lt="lsd --tree --depth 3"
 alias cp="cp -iv"
 alias mv="mv -iv"
@@ -27,7 +28,7 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 alias gitlog="git log --graph --oneline --decorate"
 alias gitmod="git submodule sync && git submodule update --remote && git pull --recurse-submodules"
-
+alias gita="git add ."
 
 # +------+
 # | MISC |

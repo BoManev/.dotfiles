@@ -19,3 +19,6 @@ fpath=(~/.dotfiles/zsh/scripts/prompt $fpath)
 autoload -Uz ~/.dotfiles/zsh/scripts/prompt && prompt
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
