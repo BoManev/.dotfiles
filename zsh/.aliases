@@ -1,8 +1,40 @@
+#!/usr/bin/env bash
+
+# +--------+
+# | System |
+# +--------+
+
+alias shutdown="sudo shutdown now"
+alias restart="sudo reboot"
+alias suspend="sudo pm-suspend"
+alias sysinfo="inxi -Fxz"
+
+# +-------+
+# | FILES |
+# +------+
+
 alias ls="lsd -Fl"
 alias lt="lsd --tree --depth 3"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -iv"
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+# +------+
+# | GIT |
+# +-----+
+
+alias gitlog="git log --graph --oneline --decorate"
+alias gitmod="git submodule sync && git submodule update --remote && git pull --recurse-submodules"
+
+
+# +------+
+# | MISC |
+# +-----+
+
+alias grep='grep --color=auto'
+alias dockls="docker container ls | awk 'NR > 1 {print \$NF}'"      # display names of running containers
 alias python="python3"
-alias sysinfo="inxi -Fxz"
 alias ts-node="npx ts-node"
 alias hardhat="npx hardhat"
-alias gitlog="git log --graph --oneline --decorate"
-alias gitsmu="git submodule sync && git submodule update --remote && git pull --recurse-submodules"
