@@ -1,25 +1,20 @@
-#<========Init========>
-#
+#--------------------# startup
+
 exec discord
 exec code
 exec picom --experimental-backends -b --config ~/.dotfiles/picom.conf
 exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
-exec_always --no-startup-id ~/.dotfiles/scripts/polybar.sh
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
 exec --no-startup-id nm-applet
 exec flameshot
 
-#<========General========>
-#
+#--------------------# general
 
 set $mod Mod4
 floating_modifier $mod
 gaps inner 15 
 gaps outer 15
 smart_gaps on
-
-#<========Workspaces========>
-#
 
 set $ws1 "1:I"
 set $ws2 "2:II"
@@ -32,16 +27,37 @@ set $ws8 "8:VIII"
 set $ws9 "9:IX"
 set $ws10 "10:X"
 
+# xprop
 assign [class="discord"] $ws10
 
 for_window [class=".*"] border pixel 0
 for_window [class="Blueberry"] floating enable
 for_window [class="Pavucontrol"] floating enable
 
-#<========Appearance========>
+set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
+
+#--------------------# bar
+
+bar {
+        status_command i3blocks -c ~/.dotfiles/i3blocks/i3blocks.config
+        position top
+        colors {
+                background #282A36
+                statusline #F8F8F2
+                separator  #44475A
+
+                focused_workspace  #44475A #44475A #F8F8F2
+                active_workspace   #282A36 #44475A #F8F8F2
+                inactive_workspace #282A36 #282A36 #BFBFBF
+                urgent_workspace   #FF5555 #FF5555 #F8F8F2
+                binding_mode       #FF5555 #FF5555 #F8F8F2
+        }
+}
+
+#--------------------# appearance
 # lxappearance for sys fonts
-#
-font pango: MesloLGS NF 12
+
+font pango: monospace 12
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
@@ -49,23 +65,13 @@ client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 
+#--------------------# keybinds
 
-#<========Macros========>
-#
-set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
-
-
-#<========Custom KB========>
-#
-
-#<========KeyBinds========>
-#
-# Custom
 bindsym $mod+b exec --no-startup-id blueberry
 bindsym $mod+c exec --no-startup-id pavucontrol
 bindsym $mod+Shift+l exec --no-startup-id --no-startup-id $i3lockwall
 bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh 
-# General
+
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+d exec i3-dmenu-desktop 
@@ -82,12 +88,13 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
+
 # Use amixer to adjust volume in PulseAudio.
 set $refresh_i3blcks pkill -RTMIN+1 i3blocks
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ 
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- 
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle 
-# Focus
+
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -102,7 +109,7 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-# Movements
+
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
