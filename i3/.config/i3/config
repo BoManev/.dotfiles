@@ -40,7 +40,10 @@ set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
 
 bar {
         status_command i3blocks -c ~/.dotfiles/i3blocks/i3blocks.config
+        font pango: SauceCodePro Nerd Font Mono 16px
         position top
+        separator_symbol ""
+        strip_workspace_numbers yes
         colors {
                 background #282A36
                 statusline #F8F8F2
@@ -90,10 +93,10 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Use amixer to adjust volume in PulseAudio.
-set $refresh_i3blcks pkill -RTMIN+1 i3blocks
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ 
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- 
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle 
+set $refresh_volume_block pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && $refresh_volume_block
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && $refresh_volume_block
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && $refresh_volume_block
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
