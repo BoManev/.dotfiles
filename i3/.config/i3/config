@@ -97,6 +97,8 @@ set $refresh_volume_block pkill -RTMIN+10 i3blocks
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && $refresh_volume_block
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && $refresh_volume_block
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && $refresh_volume_block
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -128,6 +130,10 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+bindsym $mod+Ctrl+Right resize shrink width 1 px or 1 ppt
+bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
+bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
+bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
 
 
 

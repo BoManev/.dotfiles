@@ -1,20 +1,14 @@
 { 
-//--------------------// editor  
-
 "editor.fontFamily": "LigaSauceCodePro Nerd Font",
 "editor.fontLigatures": true, 
-
 "workbench.colorTheme": "Gruvbox Dark Hard",
 "workbench.iconTheme": "gruvbox-material-icon-theme",
 "window.titleBarStyle": "custom",
 
 "editor.bracketPairColorization.enabled": true,
 "editor.guides.bracketPairs": "active",
-
 "color-highlight.markerType": "dot-after",
 "color-highlight.languages": ["!assembly"],
-
-//--------------------// terminal 
 
 "terminal.integrated.fontFamily": "SauceCodePro Nerd Font Mono",
   "terminal.integrated.profiles.linux": {
@@ -49,8 +43,6 @@
     "titleBar.activeForeground": "#ffffff"
   },
 
-  //--------------------// 
-
   "files.associations": {
     "**/i3/config": "i3",
   },
@@ -61,8 +53,10 @@
   },
   "prettier.requireConfig": true,
   "explorer.confirmDelete": false,
-  "window.zoomLevel": 1,
 
-
+  "grammarly.files.include": [
+    "/**/*.md"
+  ],
+  "window.zoomLevel": 1
 
 }

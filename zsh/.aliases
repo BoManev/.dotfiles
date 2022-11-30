@@ -39,3 +39,7 @@ alias dockls="docker container ls | awk 'NR > 1 {print \$NF}'"      # display na
 alias python="python3"
 alias ts-node="npx ts-node"
 alias hardhat="npx hardhat"
+alias vpnc="protonvpn-cli connect"
+alias vpnd="protonvpn-cli disconnect"
+alias vpns="protonvpn-cli status"
+alias mysql='sudo mysql -u root -p'
