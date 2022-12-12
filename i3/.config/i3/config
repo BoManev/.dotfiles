@@ -2,6 +2,7 @@
 
 exec discord
 exec code
+exec obsidian
 exec picom --experimental-backends -b --config ~/.dotfiles/picom.conf
 exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
@@ -29,6 +30,7 @@ set $ws10 "10:X"
 
 # xprop
 assign [class="discord"] $ws10
+assign [class="obsidian"] $ws9
 
 for_window [class=".*"] border pixel 0
 for_window [class="Blueberry"] floating enable
@@ -40,7 +42,7 @@ set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
 
 bar {
         status_command i3blocks -c ~/.dotfiles/i3blocks/i3blocks.config
-        font pango: SauceCodePro Nerd Font Mono 16px
+        font pango: Inter 14px
         position top
         separator_symbol ""
         strip_workspace_numbers yes
@@ -60,7 +62,7 @@ bar {
 #--------------------# appearance
 # lxappearance for sys fonts
 
-font pango: monospace 12
+font pango: Inter 12
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36

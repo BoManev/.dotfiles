@@ -43,3 +43,5 @@ alias vpnc="protonvpn-cli connect"
 alias vpnd="protonvpn-cli disconnect"
 alias vpns="protonvpn-cli status"
 alias mysql='sudo mysql -u root -p'
+alias update='pip install --user --upgrade pipenv'
+alias msql='mysql -u root -p --show-warnings'
