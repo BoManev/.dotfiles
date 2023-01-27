@@ -3,7 +3,7 @@
 exec discord
 exec code
 exec obsidian
-exec picom --experimental-backends -b --config ~/.dotfiles/picom.conf
+exec picom -b --config ~/.dotfiles/picom.conf
 exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
 exec --no-startup-id nm-applet
@@ -79,7 +79,8 @@ bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
-bindsym $mod+Shift+d exec i3-dmenu-desktop 
+bindsym $mod+Shift+d exec i3-dmenu-desktop
+for_window [title="fzf"] floating enable 
 bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
 bindsym $mod+Shift+e exec i3-msg exit
 bindsym $mod+Shift+c reload
