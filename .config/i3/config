@@ -41,7 +41,7 @@ set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
 #--------------------# bar
 
 bar {
-        status_command i3blocks -c ~/.dotfiles/i3blocks/i3blocks.config
+        status_command i3blocks -c ~/.dotfiles/blocks/i3blocks.config
         font pango: Inter 14px
         position top
         separator_symbol ""
@@ -79,7 +79,7 @@ bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
-bindsym $mod+Shift+d exec i3-dmenu-desktop
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 for_window [title="fzf"] floating enable 
 bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
 bindsym $mod+Shift+e exec i3-msg exit

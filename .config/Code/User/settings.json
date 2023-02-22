@@ -53,10 +53,18 @@
   },
   "prettier.requireConfig": true,
   "explorer.confirmDelete": false,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 
-  "grammarly.files.include": [
-    "/**/*.md"
-  ],
-  "window.zoomLevel": 1
-
+  "c-cpp-flylint.lizard.enable": false,
+  "c-cpp-flylint.flexelint.enable": false,
+  "c-cpp-flylint.flawfinder.enable": false,
+  "C_Cpp.default.cppStandard": "c++11",
+  "jupyter.askForKernelRestart": false,
+  "window.zoomLevel": 1,
+  "c-cpp-flylint.clang.enable": false,
 }

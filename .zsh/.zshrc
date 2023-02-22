@@ -43,6 +43,12 @@ else
 fi;
 zstyle ':completion:*' menu select
 
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+#export PATH="/home/bo/.pyenv/versions/miniconda3-latest/bin:$PATH"
+
+
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey '^[[A' history-substring-search-up

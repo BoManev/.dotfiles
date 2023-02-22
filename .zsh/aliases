@@ -15,7 +15,7 @@ alias sysinfo="inxi -Fxz"
 
 alias ls="lsd -Fl"
 alias lsa="lsd -Fl -a"
-alias lt="lsd --tree --depth 3"
+alias lst="lsd --tree --depth 3"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -v"
