@@ -1,0 +1,3 @@
+timezsh2() {
+  hyperfine "zsh -i -c exit" --warmup 5 --show-output
+}

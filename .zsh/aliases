@@ -19,8 +19,6 @@ alias lst="lsd --tree --depth 3"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -v"
-alias d='dirs -v'
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # +------+
 # | GIT |
@@ -48,3 +46,13 @@ alias msql='mysql -u root -p --show-warnings'
 # install terminfo for alacritty when ssh on server
 alias aterminfo='wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info && tic -xe alacritty,alacritty-direct alacritty.info && rm alacritty.info'
 alias dotfiles='git --git-dir=$HOME/.dotrepo/ --work-tree=$HOME'
+alias nvim='$HOME/tools/bin/nvim.appimage'
+
+
+
+
+# +------+
+# | NVIM |
+# +------+
+
+alias benchnvim='hyperfine "/home/bo/tools/bin/nvim.appimage --headless +qa" --warmup 5'

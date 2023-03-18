@@ -3,18 +3,19 @@
 exec discord
 exec code
 exec obsidian
-exec picom -b --config ~/.dotfiles/picom.conf
-exec feh --bg-scale ~/.dotfiles/wallpapers/space.jpg
+exec --no-startup-id picom -b --config ~/.dotfiles/picom.conf
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
 exec --no-startup-id nm-applet
-exec flameshot
+exec --no-startup-id flameshot
+exec --no-startup-id parcellite
+exec --no-startup-id dropbox start
 
 #--------------------# general
 
 set $mod Mod4
 floating_modifier $mod
-gaps inner 15 
-gaps outer 15
+gaps inner 5 
+gaps outer 5
 smart_gaps on
 
 set $ws1 "1:I"
@@ -30,11 +31,14 @@ set $ws10 "10:X"
 
 # xprop
 assign [class="discord"] $ws10
-assign [class="obsidian"] $ws9
+assign [class="obsidian"] $ws2
 
 for_window [class=".*"] border pixel 0
 for_window [class="Blueberry"] floating enable
-for_window [class="Pavucontrol"] floating enable
+for_window [class="Pavucontrol"] floating enable resize set 50 50 ppt
+for_window [class="Gnome-calculator"] floating enable
+for_window [class="Alacritty" workspace=$ws1] resize set 33 ppt
+for_window [class="xpad" instance="xpad"] floating enable 
 
 set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
 
@@ -44,7 +48,7 @@ bar {
         status_command i3blocks -c ~/.dotfiles/blocks/i3blocks.config
         font pango: Inter 14px
         position top
-        separator_symbol ""
+        separator_symbol "|"
         strip_workspace_numbers yes
         colors {
                 background #282A36
@@ -75,7 +79,7 @@ client.background       #F8F8F2
 bindsym $mod+b exec --no-startup-id blueberry
 bindsym $mod+c exec --no-startup-id pavucontrol
 bindsym $mod+Shift+l exec --no-startup-id --no-startup-id $i3lockwall
-bindsym $mod+p exec --no-startup-id ~/.dotfiles/scripts/display.sh 
+bindsym $mod+p exec --no-startup-id ~/.zsh/scripts/display.sh 
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill

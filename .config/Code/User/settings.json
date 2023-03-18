@@ -42,14 +42,7 @@
     "titleBar.activeBackground": "#191919cc",
     "titleBar.activeForeground": "#ffffff"
   },
-
   "files.associations": {
-    "**/i3/config": "i3",
-  },
-
-  "eslint.format.enable": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
   },
   "prettier.requireConfig": true,
   "explorer.confirmDelete": false,
@@ -59,12 +52,18 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": false
+  },
   "c-cpp-flylint.lizard.enable": false,
   "c-cpp-flylint.flexelint.enable": false,
   "c-cpp-flylint.flawfinder.enable": false,
-  "C_Cpp.default.cppStandard": "c++11",
   "jupyter.askForKernelRestart": false,
-  "window.zoomLevel": 1,
   "c-cpp-flylint.clang.enable": false,
+
+  "github.copilot.inlineSuggest.enable": false,
+  "editor.inlineSuggest.enabled": true,
+  "terminal.integrated.env.linux": {
+    "HISTFILE": "$ZDOTDIR/.zhistory"
+  }
 }

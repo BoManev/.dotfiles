@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+function rust_gen() {
+if (( $+commands[rustup] && $+commands[cargo] )); then
+  # remove old generated completion file
+  command rm -f "${0:A:h}/_cargo"
+
+  # generate new completion file
+  ver="$(cargo --version)"
+  ver_file="$ZDOTDIR/comps/rust/cargo_version"
+  comp_file="$ZDOTDIR/comps/rust/_cargo"
+
+  mkdir -p "${comp_file:h}"
+  (( ${fpath[(Ie)${comp_file:h}]} )) || fpath=("${comp_file:h}" $fpath)
+
+  if [[ ! -f "$comp_file" || ! -f "$ver_file" || "$ver" != "$(< "$ver_file")" ]]; then
+    rustup completions zsh cargo >| "$comp_file"
+    echo "$ver" >| "$ver_file"
+  fi
+
+  command rm -f "${0:A:h}/_rustup"
+
+  ver="$(rustup --version 2>&1 | head -n 1)"
+  ver_file="$ZDOTDIR/comps/rust/rustup_version"
+  comp_file="$ZDOTDIR/comps/rust/_rustup"
+
+  mkdir -p "${comp_file:h}"
+  (( ${fpath[(Ie)${comp_file:h}]} )) || fpath=("${comp_file:h}" $fpath)
+
+  if [[ ! -f "$comp_file" || ! -f "$ver_file" || "$ver" != "$(< "$ver_file")" ]]; then
+    rustup completions zsh >| "$comp_file"
+    echo "$ver" >| "$ver_file"
+  fi
+
+  unset ver ver_file comp_file
+fi
+}

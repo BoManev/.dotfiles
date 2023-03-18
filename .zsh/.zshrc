@@ -1,39 +1,24 @@
-function plugin-load {
-  local repo plugdir initfile
-  if [[ ! -d $ZPLUGINDIR ]]; then
-    echo "Creating plugin directory..."
-    mkdir $ZPLUGINDIR
-  fi
-  for repo in $@; do
-    plugdir=$ZPLUGINDIR/${repo:t}
-    initfile=$plugdir/${repo:t}.plugin.zsh
-    if [[ ! -d $plugdir ]]; then
-      echo "Cloning $repo..."
-      git clone -q --depth 1 --recursive --shallow-submodules https://github.com/$repo $plugdir
-    fi
-    if [[ ! -e $initfile ]]; then
-      local -a initfiles=($plugdir/*.plugin.{z,}sh(N) $plugdir/*.{z,}sh{-theme,}(N))
-      (( $#initfiles )) || { echo >&2 "No init file found '$repo'." && continue }
-      ln -sf "${initfiles[1]}" "$initfile"
-    fi
-    fpath+=$plugdir
-    (( $+functions[zsh-defer] )) && zsh-defer . $initfile || . $initfile
-  done
-}
+fpath=( $ZDOTDIR/before/ "${fpath[@]}" )
+autoload -Uz $fpath[1]/*(.:t)
 
-repos=(
-  rupa/z
-  zsh-users/zsh-syntax-highlighting
-  zsh-users/zsh-history-substring-search
-  Aloxaf/fzf-tab
-)
-plugin-load $repos
+rust_gen 
+z_gen
+
+fpath=( $ZDOTDIR/lazy/ "${fpath[@]}" )
+autoload -Uz $fpath[1]/*(.:t)
 
 fpath=( $ZDOTDIR/functions/ "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
 
+repos=(
+  zsh-users/zsh-completions
+  zsh-users/zsh-syntax-highlighting
+  zsh-users/zsh-history-substring-search
+  Aloxaf/fzf-tab
+)
+
 prompt
-source $ZDOTDIR/aliases
+plugin-load $repos
 
 autoload -Uz compinit 
 if [[ -n $ZDOTDIR/.zcompdump(#qN.mh+24) ]]; then
@@ -43,11 +28,15 @@ else
 fi;
 zstyle ':completion:*' menu select
 
+z_gen
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 #export PATH="/home/bo/.pyenv/versions/miniconda3-latest/bin:$PATH"
 
+
+
+source $ZDOTDIR/aliases
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -58,21 +47,18 @@ bindkey '^[OB' history-substring-search-down
 
 #   TODO
 # functions to modify (f)path
-# lazy load functions
+
 #   if [ $commands[kubectl] ]; then
     # fun() {
     #     unfunction "$0"
     #     source <(kubectl completion zsh)
-    #     eval "$(command rbenv init -)"
     #     $0 "$@"
     # }
-# 'rustup  completions zsh'
-# 'rustup  completions zsh cargo'
+
+    #     eval "$(command rbenv init -)"
+
+
 # eval "$( pyenv init - --no-rehash )"
 # eval "$( pip completion --zsh )"
 # eval "$( pipenv --completion )"
-#   eval "source $NVM_DIR/nvm.sh && source $NVM_DIR/bash_completion"
-# compctl -K    _nvm nvm
-# compdef       _pipenv pipenv
-# compctl -K    _pip_completion pip
-# compctl -K    _pyenv pyenv
+# eval "source $NVM_DIR/nvm.sh && source $NVM_DIR/bash_completion"

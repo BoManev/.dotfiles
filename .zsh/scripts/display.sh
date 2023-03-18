@@ -36,6 +36,9 @@ fi
 if [ `xrandr | grep DP-2 | grep -c ' connected '` -eq 1 ]; then
         EXTERNAL_OUTPUT="DP-1-2"
 fi
+if [ `xrandr | grep DP-3 | grep -c ' connected '` -eq 1 ]; then
+        EXTERNAL_OUTPUT="DP-3"
+fi
 if [ `xrandr | grep DP-1-3 | grep -c ' connected '` -eq 1 ]; then
         EXTERNAL_OUTPUT="DP-1-3"
 fi
@@ -46,5 +49,4 @@ case "$chosen" in
     laptop) xrandr --output $INTERNAL_OUTPUT --auto --primary --output $EXTERNAL_OUTPUT --off ;;
     clone) xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto --same-as $INTERNAL_OUTPUT ;;
     dual) xrandr --output $EXTERNAL_OUTPUT --mode 3440x1440 --pos 0x0 --rotate normal --primary --output $INTERNAL_OUTPUT --auto --below $EXTERNAL_OUTPUT ;;
-
 esac
