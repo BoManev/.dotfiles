@@ -79,7 +79,7 @@ bindsym $mod+c exec --no-startup-id pavucontrol
 bindsym $mod+Shift+l exec --no-startup-id --no-startup-id $i3lockwall
 bindsym $mod+p exec --no-startup-id ~/.zsh/scripts/display.sh 
 
-bindsym $mod+Return exec ~/tools/sources/alacritty/target/release/alacritty
+bindsym $mod+Return exec ~/tools/sources/alacritty/target/release/alacritty --config-file ~/.dotfiles/alacritty.yml
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
