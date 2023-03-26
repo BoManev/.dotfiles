@@ -31,7 +31,7 @@ bar {
     font pango: System San Francisco, FontAwesome 12
     strip_workspace_numbers yes
     position top
-    status_command ~/.cargo/bin/i3status-rs ~/.dotfiles/i3status-rs/config.toml
+    status_command ~/.cargo/bin/i3status-rs ~/.dotfiles/i3status-rs.toml
     colors {        
         separator $bg
         background $bg

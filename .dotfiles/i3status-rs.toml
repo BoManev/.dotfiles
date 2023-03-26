@@ -1,0 +1,47 @@
+icons_format = "{icon}"
+
+[theme]
+theme = "native"
+[theme.overrides]
+
+[icons]
+icons = "awesome4"
+[icons.overrides]
+bat = "-"
+bat_full = "="
+bat_charging = "+"
+
+[[block]]
+block = "net"
+format = " $icon $device {$signal_strength $ssid|} $graph_up $graph_down "
+
+[[block]]
+block = "temperature"
+format = " $icon $max "
+format_alt = " $icon $average($min:$max) "
+interval = 10
+chip = "coretemp-isa-0000"
+
+[[block]]
+block = "cpu"
+interval = 1
+format = " $icon $barchart $utilization "
+format_alt = " $icon $frequency{$max_frequency} "
+
+[[block]]
+block = "memory"
+format = " $icon $mem_total_used_percents.eng(w:2) "
+format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "battery"
+interval = 30
+format = " $percentage ($time)$icon "
+
+[[block]]
+block = "time"
+interval = 30
+format = " $timestamp.datetime(f:'%a %d/%m %R') "
