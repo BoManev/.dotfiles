@@ -1,0 +1,143 @@
+set $mod Mod4
+floating_modifier $mod
+
+gaps inner 5 
+gaps outer 0
+smart_gaps on
+
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+set $light #fbf1c7
+
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V"
+set $ws6 "6:VI"
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:IX"
+set $ws10 "10:X"
+
+bar {
+    font pango: System San Francisco, FontAwesome 12
+    strip_workspace_numbers yes
+    position top
+    status_command ~/.cargo/bin/i3status-rs ~/.dotfiles/i3status-rs.toml
+    colors {        
+        separator $bg
+        background $bg
+        statusline $light
+        # border / bg / text
+        focused_workspace    $aqua $aqua $darkgray
+        inactive_workspace   $darkgray $darkgray $yellow
+        active_workspace     $darkgray $darkgray $yellow
+        urgent_workspace     $red $red $bg  
+    }
+}
+
+# lxappearance for sys fonts
+font pango: System San Francisco 10 
+for_window [class=".*"] border pixel 0
+# border / bg / text / indicator / child border
+# client.focused          $blue $blue $darkgray $purple $darkgray
+# client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+# client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+# client.urgent           $red $red $white $red $red
+
+exec --no-startup-id feh --bg-fill ~/Downloads/wallpaper1.jpg 
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
+exec --no-startup-id nm-applet
+exec --no-startup-id flameshot
+exec --no-startup-id 1password --silent
+#exec --no-startup-id dropbox start
+
+#--------------------# general
+
+# xprop
+
+for_window [class="Blueberry"] floating enable
+for_window [class="Pavucontrol"] floating enable resize set 50 50 ppt
+for_window [class="Gnome-calculator"] floating enable
+for_window [class="Alacritty" workspace=$ws1] resize set 33 ppt
+for_window [class="xpad" instance="xpad"] floating enable 
+
+set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
+
+#--------------------# keybinds
+
+bindsym $mod+b exec --no-startup-id blueberry
+bindsym $mod+c exec --no-startup-id pavucontrol
+bindsym $mod+Shift+l exec --no-startup-id --no-startup-id $i3lockwall
+bindsym $mod+p exec --no-startup-id ~/.zsh/scripts/display.sh 
+
+bindsym $mod+Return exec ~/tools/sources/alacritty/target/release/alacritty
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
+bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# Use amixer to adjust volume in PulseAudio.
+set $refresh_volume_block pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && $refresh_volume_block
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && $refresh_volume_block
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && $refresh_volume_block
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Ctrl+Right resize shrink width 1 px or 1 ppt
+bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
+bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
+bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
+
+
+

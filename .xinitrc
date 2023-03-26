@@ -12,5 +12,5 @@ if hash picom > /dev/null 2>&1 ; then
     picom -b --config $HOME/.dotfiles/picom.conf &
 fi
 
-exec i3
+exec i3 -c $HOME/.dotfiles/i3config
 
