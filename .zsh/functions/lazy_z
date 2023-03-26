@@ -1,0 +1,10 @@
+function lazy_z() {
+    if (( $+commands[zoxide] )); then
+        function z() {
+        unfunction z
+        eval "$(zoxide init zsh)"
+        "$0" "$@"
+    }
+    fi
+}
+

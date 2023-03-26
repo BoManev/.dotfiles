@@ -1,81 +1,78 @@
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+require('core')
+require('keys')
+require('lazy').setup('plugins')
+require('autos')
+require('plugins.config.telescope')
 
-vim.opt.showmatch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.mouse = 'v'
-vim.opt.incsearch = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.guicursor = ''
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.smartindent = true
-vim.opt.autoindent = true
-vim.opt.undodir = os.getenv('HOME') .. '/tools/nvim/undodir'
-vim.opt.undofile = true
-vim.opt.termguicolors = true
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.cc ="80"
-vim.opt.wrap = false
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-require('lazy').setup({
-    {
-       'ellisonleao/gruvbox.nvim',
-       lazy = false,
-       priority = 1000,
-       config = function()
-           vim.cmd([[colorscheme gruvbox]])
-           vim.o.background = "dark"
-        end
-    },
-    { 
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
-         dependencies = { 'nvim-lua/plenary.nvim' },
-         keys = {
-             { '<leader>tl', '<CMD>Telescope<CR>',		mode = { 'n' } },
-             { '<leader>pf', '<CMD>Telescope find_files<CR>', 	mode = { 'n' } },
-             { '<leader>cs', '<CMD>Telescope commands<CR>', 	mode = { 'n' } },
-             { '<leader>ks', '<CMD>Telescope keymaps<CR>', 	mode = { 'n' } },
-             { '<leader>rg', '<CMD>Telescope live_grep<CR>', 	mode = { 'n' } },
-             { '<leader>gf', '<CMD>Telescope git_files<CR>', 	mode = { 'n' } },
-         }
-    },
-    {
-	    "nvim-treesitter/nvim-treesitter", 
-	    build = ":TSUpdate",
-        config = function()
-            require'nvim-treesitter.configs'.setup {
-                  ensure_installed = {'c', 'lua', 'cpp', 'python', 'javascript', 'typescript', 'vim', 'help', 'query' },
-                  sync_install = false,
-                  auto_install = true,
-                  highlight = {
-                    enable = true,
-                   additional_vim_regex_highlighting = false,
-                  }
-              }
-        end
-    },
-})
-
-vim.keymap.set('n', '<leader>e', vim.cmd.Ex) 
-vim.keymap.set('n', '<leader>gr', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end)
+--        'VonHeikemen/lsp-zero.nvim',
+--        branch = 'v1.x',
+--        dependencies = {
+--            -- LSP Support
+--            {'neovim/nvim-lspconfig'},             -- Required
+--            {'williamboman/mason.nvim'},           -- Optional
+--            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+--
+--            -- Autocompletion
+--            {'hrsh7th/nvim-cmp'},         -- Required
+--            {'hrsh7th/cmp-nvim-lsp'},     -- Required
+--            {'hrsh7th/cmp-buffer'},       -- Optional
+--            {'hrsh7th/cmp-path'},         -- Optional
+--            {'saadparwaiz1/cmp_luasnip'}, -- Optional
+--            {'hrsh7th/cmp-nvim-lua'},     -- Optional
+--
+--            -- Snippets
+--            {'L3MON4D3/LuaSnip'},             -- Required
+--            {'rafamadriz/friendly-snippets'}, -- Optional
+--        }
+--    }
+--})
+--local lsp = require('lsp-zero')
+--lsp.preset('recommended')
+--
+--lsp.ensure_installed({
+--    'rust_analyzer'
+--})
+--
+--local cmp = require('cmp')
+--local cmp_select = {behavior = cmp.SelectBehavior.Select}
+--local cmp_mappings = lsp.defaults.cmp_mappings({
+--  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+--  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+--  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+--  ["<C-Space>"] = cmp.mapping.complete(),
+--})
+--lsp.setup_nvim_cmp({
+--  mapping = cmp_mappings
+--})
+--
+--lsp.set_preferences({
+--    suggest_lsp_servers = true,
+--    sign_icons = {
+--        error = 'E',
+--        warn = 'W',
+--        hint = 'H',
+--        info = 'I'
+--    }
+--})
+--
+--lsp.on_attach(function(client, bufnr)
+--  local opts = {buffer = bufnr, remap = false}
+--
+--  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+--  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+--  vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+--  vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+--  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+--  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+--  vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+--  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+--  vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+--  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+--end)
+--
+--lsp.nvim_workspace()
+--
+--lsp.setup()
+--
+--vim.api.nvim_command([[autocmd BufEnter *.pdf execute "!zathura '%' &"| bdelete % | :E]])

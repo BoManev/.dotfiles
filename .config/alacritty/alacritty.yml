@@ -18,7 +18,7 @@ window:
 # Font configuration
 font:
   normal:
-    family: SauceCodePro Nerd Font Mono
+    family: Comic Code Ligatures  
     style: Regular
 
   bold:

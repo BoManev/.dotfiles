@@ -1,0 +1,16 @@
+function lazy_rust() {
+    function cargo() {
+        unfunction cargo 
+        declare -A _comps
+        autoload -Uz _cargo
+        _comps[cargo]=_cargo
+        "$0" "$@"
+    }
+    function rustup() {
+        unfunction rustup 
+        declare -A _comps
+        autoload -Uz _rustup
+        _comps[rustup]=_rustup
+        "$0" "$@"
+    }
+}

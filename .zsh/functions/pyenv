@@ -1,6 +1,0 @@
-#   if [ $commands[kubectl] ]; then
-#     fun() {
-#         unfunction "$0"
-#         source <(kubectl completion zsh)
-#         $0 "$@"
-#     }

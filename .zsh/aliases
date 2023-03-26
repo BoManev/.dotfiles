@@ -1,25 +1,18 @@
 #!/usr/bin/env bash
 
-# +--------+
-# | System |
-# +--------+
-
 alias shutdown="sudo shutdown now"
 alias restart="sudo reboot"
 alias suspend="sudo pm-suspend"
 alias sysinfo="inxi -Fxz"
-
-# +-------+
-# | FILES |
-# +------+
-
-alias ls="lsd -Fl"
-alias lsa="lsd -Fl -a"
-alias lst="lsd --tree --depth 3"
+alias ll="exa --grid --icons --across"
+alias lla="exa --grid --icons --across --all"
+alias llt="exa --tree --level=2 --icons" 
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -v"
-
+alias block="rfkill block bluetooth"
+alias bunlock="rfkill unblock bluetooth"
+alias ppath="echo -e '${PATH//:/\\n}'"
 # +------+
 # | GIT |
 # +-----+
@@ -46,7 +39,6 @@ alias msql='mysql -u root -p --show-warnings'
 # install terminfo for alacritty when ssh on server
 alias aterminfo='wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info && tic -xe alacritty,alacritty-direct alacritty.info && rm alacritty.info'
 alias dotfiles='git --git-dir=$HOME/.dotrepo/ --work-tree=$HOME'
-alias nvim='$HOME/tools/bin/nvim.appimage'
 
 
 

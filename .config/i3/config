@@ -1,22 +1,20 @@
-#--------------------# startup
-
-exec discord
-exec code
-exec obsidian
-exec --no-startup-id picom -b --config ~/.dotfiles/picom.conf
-exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
-exec --no-startup-id nm-applet
-exec --no-startup-id flameshot
-exec --no-startup-id parcellite
-exec --no-startup-id dropbox start
-
-#--------------------# general
-
 set $mod Mod4
 floating_modifier $mod
+
 gaps inner 5 
-gaps outer 5
+gaps outer 0
 smart_gaps on
+
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+set $light #fbf1c7
 
 set $ws1 "1:I"
 set $ws2 "2:II"
@@ -29,11 +27,43 @@ set $ws8 "8:VIII"
 set $ws9 "9:IX"
 set $ws10 "10:X"
 
-# xprop
-assign [class="discord"] $ws10
-assign [class="obsidian"] $ws2
+bar {
+    font pango: System San Francisco, FontAwesome 12
+    strip_workspace_numbers yes
+    position top
+    status_command ~/.cargo/bin/i3status-rs ~/.dotfiles/i3status-rs/config.toml
+    colors {        
+        separator $bg
+        background $bg
+        statusline $light
+        # border / bg / text
+        focused_workspace    $aqua $aqua $darkgray
+        inactive_workspace   $darkgray $darkgray $yellow
+        active_workspace     $darkgray $darkgray $yellow
+        urgent_workspace     $red $red $bg  
+    }
+}
 
+# lxappearance for sys fonts
+font pango: System San Francisco 10 
 for_window [class=".*"] border pixel 0
+# border / bg / text / indicator / child border
+# client.focused          $blue $blue $darkgray $purple $darkgray
+# client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+# client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+# client.urgent           $red $red $white $red $red
+
+exec --no-startup-id feh --bg-fill ~/Downloads/wallpaper1.jpg 
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.dotfiles/scripts/lock.sh
+exec --no-startup-id nm-applet
+exec --no-startup-id flameshot
+exec --no-startup-id 1password --silent
+#exec --no-startup-id dropbox start
+
+#--------------------# general
+
+# xprop
+
 for_window [class="Blueberry"] floating enable
 for_window [class="Pavucontrol"] floating enable resize set 50 50 ppt
 for_window [class="Gnome-calculator"] floating enable
@@ -42,38 +72,6 @@ for_window [class="xpad" instance="xpad"] floating enable
 
 set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
 
-#--------------------# bar
-
-bar {
-        status_command i3blocks -c ~/.dotfiles/blocks/i3blocks.config
-        font pango: Inter 14px
-        position top
-        separator_symbol "|"
-        strip_workspace_numbers yes
-        colors {
-                background #282A36
-                statusline #F8F8F2
-                separator  #44475A
-
-                focused_workspace  #44475A #44475A #F8F8F2
-                active_workspace   #282A36 #44475A #F8F8F2
-                inactive_workspace #282A36 #282A36 #BFBFBF
-                urgent_workspace   #FF5555 #FF5555 #F8F8F2
-                binding_mode       #FF5555 #FF5555 #F8F8F2
-        }
-}
-
-#--------------------# appearance
-# lxappearance for sys fonts
-
-font pango: Inter 12
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
-
 #--------------------# keybinds
 
 bindsym $mod+b exec --no-startup-id blueberry
@@ -81,10 +79,9 @@ bindsym $mod+c exec --no-startup-id pavucontrol
 bindsym $mod+Shift+l exec --no-startup-id --no-startup-id $i3lockwall
 bindsym $mod+p exec --no-startup-id ~/.zsh/scripts/display.sh 
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec ~/tools/sources/alacritty/target/release/alacritty
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
-for_window [title="fzf"] floating enable 
 bindsym $mod+d exec dmenu_run -b -fn "MesloLGS NF-13"
 bindsym $mod+Shift+e exec i3-msg exit
 bindsym $mod+Shift+c reload
