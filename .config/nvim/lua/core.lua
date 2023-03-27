@@ -64,3 +64,7 @@ vim.opt.completeopt = "menu,menuone,noselect,noinsert"
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+vim.o.clipboard = 'unnamedplus'
+
+

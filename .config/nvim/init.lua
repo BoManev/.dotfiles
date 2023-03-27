@@ -1,10 +1,10 @@
 require('core')
 require('keys')
+require('ftypes')
 require('lazy').setup('plugins')
 require('autos')
-require('plugins.config.telescope')
 
-
+require('telescope')
 --        'VonHeikemen/lsp-zero.nvim',
 --        branch = 'v1.x',
 --        dependencies = {

@@ -13,9 +13,8 @@ return {
                 config = {
                     workspaces = {
                         vault = '~/bohq/vault',
-                        wiki = '~/bohq/wiki'
                     },
-                    default_workspace = "wiki"
+                    default_workspace = "vault"
                 },
             },
         },
