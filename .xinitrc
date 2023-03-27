@@ -1,9 +1,13 @@
 #!/bin/sh
 
 #. /etc/X11/Xsession
+ DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+  export DBUS_SESSION_BUS_ADDRESS
 
+  dbus-update-activation-environment --verbose --systemd \
+    DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 [[ -f ~/.Xresources ]] && xrdb -I$HOME ~/.Xresources
-dbus-update-activation-environment DISPLAY XAUTHORITY
+
 if hash dunst > /dev/null 2>&1 ; then
     dunst &
 fi
