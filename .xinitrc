@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 #. /etc/X11/Xsession
 
@@ -11,6 +11,8 @@ fi
 if hash picom > /dev/null 2>&1 ; then
     picom -b --config $HOME/.dotfiles/picom.conf &
 fi
+
+export GDK_BACKEND=x11
 
 exec i3 -c $HOME/.dotfiles/i3config
 
