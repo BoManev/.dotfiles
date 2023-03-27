@@ -3,7 +3,7 @@
 #. /etc/X11/Xsession
 
 [[ -f ~/.Xresources ]] && xrdb -I$HOME ~/.Xresources
-
+dbus-update-activation-environment DISPLAY XAUTHORITY
 if hash dunst > /dev/null 2>&1 ; then
     dunst &
 fi
