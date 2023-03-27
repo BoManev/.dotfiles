@@ -1,0 +1,8 @@
+
+function annotate-history {
+    local cmd=$(cat -n $HISTFILE | fzf --tac --preview 'echo {}' --preview-window=down:wrap | grep -o '^[[:space:]]*[0-9]*' | sed 's/ //g')
+    echo "Enter comment for command $selected_command:"
+    read comment
+    sed -i "${line}s/$/ # ${comment}/" "$HISTFILE"
+    fc -R
+}

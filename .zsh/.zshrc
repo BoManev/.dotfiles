@@ -5,6 +5,7 @@ autoload -Uz $fpath[1]/*(.:t)
 lazy_node
 lazy_rust
 lazy_z
+lazy_conda
 rust_gen 
 
 repos=(
@@ -16,7 +17,11 @@ repos=(
 
 prompt
 plugin-load $repos
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
 
+# To differentiate aliases from other command types
+ZSH_HIGHLIGHT_STYLES[comment]='fg=magenta,bold'
 autoload -Uz compinit 
 if [[ -n $ZDOTDIR/.zcompdump(#qN.mh+24) ]]; then
     compinit && zcompile "$ZDOTDIR/.zcompdump"
@@ -25,6 +30,7 @@ else
 fi;
 zstyle ':completion:*' menu select
 
+setopt interactive_comments
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -36,3 +42,4 @@ bindkey '^[OB' history-substring-search-down
 # eval "$( pyenv init - --no-rehash )"
 # eval "$( pip completion --zsh )"
 # eval "$( pipenv --completion )"
+

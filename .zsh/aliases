@@ -3,48 +3,27 @@
 alias shutdown="sudo shutdown now"
 alias restart="sudo reboot"
 alias suspend="sudo pm-suspend"
-alias sysinfo="inxi -Fxz"
 alias ll="exa --grid --icons --across"
 alias lla="exa --grid --icons --across --all"
 alias llt="exa --tree --level=2 --icons" 
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -v"
-alias block="rfkill block bluetooth"
-alias bunlock="rfkill unblock bluetooth"
+alias bkill="rfkill block bluetooth"
+alias blive="rfkill unblock bluetooth"
 alias ppath="echo -e '${PATH//:/\\n}'"
-# +------+
-# | GIT |
-# +-----+
-
 alias gitlog="git log --graph --oneline --decorate"
 alias gitmod="git submodule sync && git submodule update --remote && git pull --recurse-submodules"
-alias gita="git add ."
-
-# +------+
-# | MISC |
-# +-----+
-
 alias grep='grep --color=auto'
-alias dockls="docker container ls | awk 'NR > 1 {print \$NF}'"      # display names of running containers
+# display names of running containers
+alias dockls="docker container ls | awk 'NR > 1 {print \$NF}'"
 alias python="python3"
-alias ts-node="npx ts-node"
-alias hardhat="npx hardhat"
 alias vpnc="protonvpn-cli connect"
 alias vpnd="protonvpn-cli disconnect"
 alias vpns="protonvpn-cli status"
 alias mysql='sudo mysql -u root -p'
-alias update='pip install --user --upgrade pipenv'
 alias msql='mysql -u root -p --show-warnings'
 # install terminfo for alacritty when ssh on server
 alias aterminfo='wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info && tic -xe alacritty,alacritty-direct alacritty.info && rm alacritty.info'
 alias dotfiles='git --git-dir=$HOME/.dotrepo/ --work-tree=$HOME'
-
-
-
-
-# +------+
-# | NVIM |
-# +------+
-
-alias benchnvim='hyperfine "/home/bo/tools/bin/nvim.appimage --headless +qa" --warmup 5'
+alias benchnvim='hyperfine "nvim --headless +qa" --warmup 5'
