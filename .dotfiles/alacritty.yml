@@ -48,6 +48,10 @@ cursor:
 mouse_bindings:
   - { mouse: Right, action: PasteSelection }
 
+key_bindings:
+  - { key: V, mods: Control, action: Paste }
+  - { key: C, mods: Control, action: Copy }
+  - { key: C, mods: Control|Shift, chars: "\x03" }
 # Key bindings
 #
 # Key bindings are specified as a list of objects. For example, this is the
