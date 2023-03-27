@@ -65,10 +65,11 @@ exec --no-startup-id 1password --silent
 # xprop
 
 for_window [class="Blueberry"] floating enable
-for_window [class="Pavucontrol"] floating enable resize set 50 50 ppt
+for_window [class="Pavucontrol"] floating enable resize set 600 900
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Alacritty" workspace=$ws1] resize set 33 ppt
-for_window [class="xpad" instance="xpad"] floating enable 
+for_window [class="xpad"] floating enable 
+for_window [class="1Password"] floating enable resize set 100 100
 
 set $i3lockwall sh ~/.dotfiles/scripts/lock.sh
 
