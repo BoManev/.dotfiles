@@ -1,21 +1,17 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
-
-# Import additional configuration files
-#import:
-#  - /path/to/alacritty.yml
-
 env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
+  # default: `xterm-256color`
   TERM: alacritty
 
 window:
   draw_bold_text_with_bright_colors: true
-# Font configuration
+  padding:
+    x: 0
+    y: 0
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
 font:
   normal:
     family: Comic Code Ligatures  
@@ -28,14 +24,19 @@ font:
   italic:
     family: SauceCodePro Nerd Font Mono
     style: Italic
-
   size: 9.0
 
-  # Offset is the extra space around each character. `offset.y` can be thought
-  # of as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
     y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+
+  save_to_clipboard: false
 
 cursor:
   style:
@@ -43,16 +44,57 @@ cursor:
     blinking: Off
     unfocused_hollow: true
 
-
-
 mouse_bindings:
   - { mouse: Right, action: PasteSelection }
-
 key_bindings:
-  - { key: V, mods: Control, action: Paste }
-  - { key: C, mods: Control, action: Copy }
-  - { key: C, mods: Control|Shift, chars: "\x03" }
-# Key bindings
+  # remaps for Control + Shift
+  - { key: H, mods: Control|Shift, chars: "\x1b[72;5u" }
+  - { key: J, mods: Control|Shift, chars: "\x1b[74;5u" }
+  - { key: K, mods: Control|Shift, chars: "\x1b[75;5u" }
+  - { key: L, mods: Control|Shift, chars: "\x1b[76;5u" }
+  - { key: I, mods: Control, chars: "\x1b[105;5u" }
+  - { key: Period, mods: Control, chars: "\x1b[46;5u" }
+  - { key: Comma, mods: Control, chars: "\x1b[44;5u" }
+  - { key: Semicolon, mods: Control, chars: "\x1b[59;5u" }
+  - { key: Return, mods: Shift, chars: "\x1b[13;2u" }
+
+  - { key: E,         mods: Control|Shift,              action: ToggleViMode   }
+  - { key: Paste,                                       action: Paste          }
+  - { key: Copy,                                        action: Copy           }
+  - { key: L,         mods: Control,                    action: ClearLogNotice }
+  - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
+  - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp   }
+  - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
+  - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
+  - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
+
+  # Search Mode
+  - { key: Return,                mode: Search|Vi,  action: SearchConfirm         }
+  - { key: Escape,                mode: Search,     action: SearchCancel          }
+  - { key: C,      mods: Control, mode: Search,     action: SearchCancel          }
+  - { key: U,      mods: Control, mode: Search,     action: SearchClear           }
+  - { key: W,      mods: Control, mode: Search,     action: SearchDeleteWord      }
+  - { key: P,      mods: Control, mode: Search,     action: SearchHistoryPrevious }
+  - { key: N,      mods: Control, mode: Search,     action: SearchHistoryNext     }
+  - { key: Up,                    mode: Search,     action: SearchHistoryPrevious }
+  - { key: Down,                  mode: Search,     action: SearchHistoryNext     }
+  - { key: Return,                mode: Search|~Vi, action: SearchFocusNext       }
+  - { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
+
+  # (Windows, Linux, and BSD only)
+  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  - { key: C,              mods: Control|Shift,                   action: Copy             }
+  - { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
+  - { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
+  - { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
+  - { key: Insert,         mods: Shift,                           action: PasteSelection   }
+  - { key: Key0,           mods: Control,                         action: ResetFontSize    }
+  - { key: Equals,         mods: Control,                         action: IncreaseFontSize }
+  - { key: Plus,           mods: Control,                         action: IncreaseFontSize }
+  - { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
+  - { key: Minus,          mods: Control,                         action: DecreaseFontSize }
+  - { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }
+
 #
 # Key bindings are specified as a list of objects. For example, this is the
 # default paste binding:
@@ -198,43 +240,6 @@ key_bindings:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
-  #- { key: Paste,                                       action: Paste          }
-  #- { key: Copy,                                        action: Copy           }
-  #- { key: L,         mods: Control,                    action: ClearLogNotice }
-  #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp   }
-  #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
-  #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
-  #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
-
-  # Search Mode
-  #- { key: Return,                mode: Search|Vi,  action: SearchConfirm         }
-  #- { key: Escape,                mode: Search,     action: SearchCancel          }
-  #- { key: C,      mods: Control, mode: Search,     action: SearchCancel          }
-  #- { key: U,      mods: Control, mode: Search,     action: SearchClear           }
-  #- { key: W,      mods: Control, mode: Search,     action: SearchDeleteWord      }
-  #- { key: P,      mods: Control, mode: Search,     action: SearchHistoryPrevious }
-  #- { key: N,      mods: Control, mode: Search,     action: SearchHistoryNext     }
-  #- { key: Up,                    mode: Search,     action: SearchHistoryPrevious }
-  #- { key: Down,                  mode: Search,     action: SearchHistoryNext     }
-  #- { key: Return,                mode: Search|~Vi, action: SearchFocusNext       }
-  #- { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
-
-  # (Windows, Linux, and BSD only)
-  #- { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
-  #- { key: C,              mods: Control|Shift,                   action: Copy             }
-  #- { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
-  #- { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
-  #- { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
-  #- { key: Insert,         mods: Shift,                           action: PasteSelection   }
-  #- { key: Key0,           mods: Control,                         action: ResetFontSize    }
-  #- { key: Equals,         mods: Control,                         action: IncreaseFontSize }
-  #- { key: Plus,           mods: Control,                         action: IncreaseFontSize }
-  #- { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
-  #- { key: Minus,          mods: Control,                         action: DecreaseFontSize }
-  #- { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }
-
 #debug:
   # Display the time it takes to redraw each frame.
   #render_timer: false
