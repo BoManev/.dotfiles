@@ -17,11 +17,10 @@ repos=(
 
 prompt
 plugin-load $repos
-# Declare the variable
-typeset -A ZSH_HIGHLIGHT_STYLES
 
-# To differentiate aliases from other command types
+typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[comment]='fg=magenta,bold'
+
 autoload -Uz compinit 
 if [[ -n $ZDOTDIR/.zcompdump(#qN.mh+24) ]]; then
     compinit && zcompile "$ZDOTDIR/.zcompdump"

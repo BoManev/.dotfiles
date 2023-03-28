@@ -76,8 +76,8 @@ key_bindings:
   - { key: W,      mods: Control, mode: Search,     action: SearchDeleteWord      }
   - { key: P,      mods: Control, mode: Search,     action: SearchHistoryPrevious }
   - { key: N,      mods: Control, mode: Search,     action: SearchHistoryNext     }
-  - { key: Up,                    mode: Search,     action: SearchHistoryPrevious }
-  - { key: Down,                  mode: Search,     action: SearchHistoryNext     }
+    #  - { key: Up,                    mode: Search,     action: SearchHistoryPrevious }
+    #  - { key: Down,                  mode: Search,     action: SearchHistoryNext     }
   - { key: Return,                mode: Search|~Vi, action: SearchFocusNext       }
   - { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
 
