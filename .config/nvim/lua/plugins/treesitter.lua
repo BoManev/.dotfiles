@@ -1,6 +1,6 @@
 local M = {
-    "nvim-treesitter/nvim-treesitter", 
-	build = ":TSUpdate",
+    "nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
 }
 
 function M.config()

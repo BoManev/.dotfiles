@@ -18,6 +18,7 @@ alias grep='grep --color=auto'
 # display names of running containers
 alias dockls="docker container ls | awk 'NR > 1 {print \$NF}'"
 alias python="python3"
+alias pip="pip3"
 alias vpnc="protonvpn-cli connect"
 alias vpnd="protonvpn-cli disconnect"
 alias vpns="protonvpn-cli status"

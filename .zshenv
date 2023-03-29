@@ -23,9 +23,10 @@ setopt NO_EXTENDED_HISTORY
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/tools/bin:$PATH"
-PATH="$HOME/tools/miniconda3/bin:$PATH"
  
 source "$HOME/.cargo/env"
 export GOROOT="$HOME/tools/sources/go"
 export GOPATH="$HOME/tools/go"
 export NVM_DIR="$HOME/tools/nvm"
+
+export MANPAGER='nvim +Man!'

@@ -20,6 +20,13 @@ function M.config()
             border = 'rounded'
         }
     })
+    require("mason-lspconfig").setup({
+        ensure_installed = {
+            "rust_analyzer",
+            "clangd"
+        }
+    })
+
     local lsp = require('lsp-zero').preset({
         manage_nvim_cmp = {
             set_sources = 'recommended'
@@ -28,14 +35,17 @@ function M.config()
     local cmp = require('cmp')
 
     cmp.setup({
-        sources = {
-            {name = 'nvim_lsp'},
-            {name = 'nvim_lua'},
+          window = {
+              completion = cmp.config.window.bordered(),
+              documentation = cmp.config.window.bordered(),
+          },
+          sources = {
+              {name = 'nvim_lsp'},
+              {name = 'nvim_lua'},
         }
     })
     lsp.on_attach(function(_, bufnr)
         lsp.default_keymaps({buffer = bufnr})
-        -- More keybinds here
     end)
 
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
