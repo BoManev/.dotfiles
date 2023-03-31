@@ -1,35 +1,35 @@
 local M = {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    cmd = 'Telescope',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim'},
+      { 'nvim-neorg/neorg' }
+    },
+    keys = {
+        {'<leader>tt', '<CMD>Telescope<CR>'},
+        {'<leader>tf', '<CMD>Telescope find_files<CR>'},
+        {'<leader>tg', '<CMD>Telescope git_files<CR>'},
+        {'<leader>ts', '<CMD>Telescope live_grep<CR>'},
+        {'<leader>tb', '<CMD>Telescope buffers<CR>'},
+        {'<leader>tr', '<CMD>Telescope registers<CR>'},
+        {'<leader>tp', '<CMD>Telescope oldfiles<CR>'},
+    }
 }
 
 function M.config()
-    local builtin = require('telescope.builtin')
+  require("telescope").load_extension("neorg")
+  local actions = require("telescope.actions")
+  local trouble = require("trouble.providers.telescope")
 
-    vim.keymap.set('n', '<leader>t', '<CMD>Telescope<CR>', {})
-    vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-    vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
-    vim.keymap.set('n', '<leader>rf', builtin.live_grep, {})
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-    vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
-    vim.keymap.set('n', '<leader>fc', builtin.commands, {})
+  local telescope = require("telescope")
+  require('telescope').setup {
+    defaults = {
+      mappings = {
+        i = { ["<c-t>"] = trouble.open_with_trouble },
+        n = { ["<c-t>"] = trouble.open_with_trouble },
+      }
+    }
+  }
 end
 
 return M
 
---return {
---    'nvim-telescope/telescope.nvim', tag = '0.1.1',
---    dependencies = { 'nvim-lua/plenary.nvim' },
---    lazy = true,
---    keys = {
---        { '<leader>t', '<CMD>Telescope<CR>', mode = { 'n' } },
---        { '<leader>pf', '<CMD>Telescope find_files<CR>', mode = { 'n' } },
---        { '<leader>gf', '<CMD>Telescope git_files<CR>', mode =  {'n'}},
---        { '<leader>rf', '<CMD>Telescope live_grep<CR>', mode = { 'n' } },
---        { '<leader>fc', '<CMD>Telescope commands<CR>', mode = { 'n' } },
---        { '<leader>fk', '<CMD>Telescope keymaps<CR>', mode = { 'n' } },
---        { '<leader>fb', '<CMD>Telescope buffers<CR>', mode = { 'n' } },
---    }
---}
---
