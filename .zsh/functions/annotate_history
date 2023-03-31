@@ -1,8 +1,0 @@
-#!/usr/bin/env zsh
-function annotate-history {
-    local line=$(cat $HISTFILE | fzf --tac --preview 'echo {}' --preview-window=down:wrap)
-    vared -p "$line # " -c comment
-    # set delimeter \
-    sed -i '\|'"$line"'| s|$| # '"$comment"'|' "$HISTFILE"
-    fc -R
-}

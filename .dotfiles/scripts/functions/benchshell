@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+hyperfine "bash -i -c exit" --warmup 5 --show-output

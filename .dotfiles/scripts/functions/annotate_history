@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+local line=$(cat $HOME/.bash_history | fzf --tac --preview 'echo {}' --preview-window=down:wrap)
+local comment
+vared -p "$line # " -c comment
+# set delimeter \
+sed -i '\|'"$line"'| s|$| # '"$comment"'|' "$HISTFILE"
+history -r

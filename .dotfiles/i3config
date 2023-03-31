@@ -62,12 +62,11 @@ for_window [class="Alacritty" workspace=$ws1] resize set 33 ppt
 for_window [class="xpad"] floating enable 
 for_window [class="1Password"] floating enable resize set 100 100
 
-set $i3lockwall sh ~/.zsh/scripts/lock-screen.sh
+set $i3lockwall sh ~/.dotfiles/scripts/lock-screen.sh
 
 bindsym $mod+b exec --no-startup-id blueberry
 bindsym $mod+c exec --no-startup-id pavucontrol
 bindsym $mod+d exec dmenu_run -b -fn "System San Francisco-13"
-bindsym $mod+p exec --no-startup-id ~/.zsh/scripts/display.sh 
 
 bindsym $mod+s split s
 bindsym $mod+v split v

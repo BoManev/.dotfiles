@@ -1,6 +1,0 @@
-function mwatch() {
-    while true; do
-        make "$@" 
-        inotifywait -r -e modify,move,create,delete . 2>/dev/null
-    done
-}

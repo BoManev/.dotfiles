@@ -1,9 +1,0 @@
-function lazy_node() {
-  function nvm node npm pnpm yarn {
-    unfunction nvm node npm pnpm yarn 
-    # Load nvm if it exists in $NVM_DIR
-    [[ -f "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-    "$0" "$@"
-  }
-}
-
