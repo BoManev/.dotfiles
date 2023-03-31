@@ -1,4 +1,1 @@
-.zsh/.zsh_history
-.zsh/.zcompdump*
-.zsh/plugins
-.zsh/comps
+bashrc/plugins
