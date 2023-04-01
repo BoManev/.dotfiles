@@ -28,7 +28,7 @@ set $ws9 "9:IX"
 set $ws10 "10:X"
 
 bar {
-    font pango: System San Francisco, FontAwesome 12
+    font pango: System San Francisco 12, FontAwesome 12
     strip_workspace_numbers yes
     position top
     status_command ~/.cargo/bin/i3status-rs ~/.dotfiles/i3status-rs.toml
@@ -66,7 +66,7 @@ set $i3lockwall sh ~/.dotfiles/scripts/lock-screen.sh
 
 bindsym $mod+b exec --no-startup-id blueberry
 bindsym $mod+c exec --no-startup-id pavucontrol
-bindsym $mod+d exec dmenu_run -b -fn "System San Francisco-13"
+bindsym $mod+d exec dmenu_run -b -fn "System San Francisco-12"
 
 bindsym $mod+s split s
 bindsym $mod+v split v
@@ -83,7 +83,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
 bindsym $mod+Shift+q kill
 
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec --no-startup-id j4-dmenu --dmenu 'dmenu -b -fn "System San Francisco-12"'
 bindsym $mod+Shift+s exec --no-startup-id $i3lockwall
 bindsym $mod+Return exec ~/tools/sources/alacritty/target/release/alacritty --config-file ~/.dotfiles/alacritty.yml
 

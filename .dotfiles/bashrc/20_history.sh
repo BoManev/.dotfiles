@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-HISTCONTROL=ignoreboth
 shopt -s histappend
-# set +o histexpand
-
-HISTSIZE=500000
-HISTFILESIZE=500000
-
+set +o histexpand
+HISTCONTROL=ignoreboth
+# infinity history
+HISTFILESIZE=
+HISTSIZE=
+HISTTIMEFORMAT="%F %T "
+HISTIGNORE="ls:ll:lt:la:nvim*:cd *:pwd:bg *:fg *:history"

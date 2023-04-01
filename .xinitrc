@@ -2,6 +2,7 @@
 
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 export GDK_BACKEND=x11
+export XDG_SESSION_TYPE=x11
 
 dbus-update-activation-environment --verbose --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
