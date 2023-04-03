@@ -10,6 +10,8 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.opt_local.spell = true
         vim.opt_local.breakindent = true
         vim.opt_local.signcolumn = 'no'
+        -- rebuild spell file
+        -- :mkspell! ~/.config/nvim/spell/en.utf-8.add.spl ~/.config/nvim/spell/en.utf-8.add  
     end
 })
 
