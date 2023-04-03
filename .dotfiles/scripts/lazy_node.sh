@@ -1,14 +1,14 @@
 #!usr/bin/env bash
 
 lazy_node() {
-    unfunction nvm node npm pnpm yarn 
+    unset -f nvm node npm pnpm yarn 
     # Load nvm if it exists in $NVM_DIR
     [[ -f "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-    "$0" "$@"
+    command "$@"
 }
 
-nvm() { nvm_node_npm_pnpm_yarn nvm "$@"; }
-node() { nvm_node_npm_pnpm_yarn node "$@"; }
-npm() { nvm_node_npm_pnpm_yarn npm "$@"; }
-pnpm() { nvm_node_npm_pnpm_yarn pnpm "$@"; }
-yarn() { nvm_node_npm_pnpm_yarn yarn "$@"; }
+nvm() { lazy_node nvm "$@"; }
+node() { lazy_node node "$@"; }
+npm() { lazy_node npm "$@"; }
+pnpm() { lazy_node pnpm "$@"; }
+yarn() { lazy_node yarn "$@"; }

@@ -47,9 +47,13 @@ function M.config()
     lsp.on_attach(function(_, bufnr)
         lsp.default_keymaps({buffer = bufnr})
     end)
+    local lspconf = require('lspconfig')
+    lspconf.lua_ls.setup(lsp.nvim_lua_ls())
 
-    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
+--    lspconf.marksman.setup({
+--      single_file_support = false,
+--      root_dir = lspconf.util.root_pattern('.marksman.toml')
+--    })
     lsp.setup()
 end
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 function conda() {
-    unset -f conda
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/home/bo/tools/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
@@ -13,5 +14,6 @@ function conda() {
         fi
     fi
     unset __conda_setup
-    command conda "$@"
+    # <<< conda initialize <<<
+    conda "$@"
 }

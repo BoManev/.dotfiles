@@ -5,16 +5,25 @@ gaps inner 5
 gaps outer 0
 smart_gaps on
 
-set $bg #282828
-set $red #cc241d
-set $green #98971a
-set $yellow #d79921
-set $blue #458588
-set $purple #b16286
-set $aqua #689d68
-set $gray #a89984
-set $darkgray #1d2021
-set $light #fbf1c7
+set_from_resource $foreground  foreground  #dcd7ba
+set_from_resource $background  background  #1f1f28
+set_from_resource $cursorColor cursorColor #dcd7ba
+set_from_resource $black      color0  #090618
+set_from_resource $darkblack  color8  #727169
+set_from_resource $red        color1  #c34043
+set_from_resource $darkred    color9  #e82424
+set_from_resource $green      color2  #76946a
+set_from_resource $darkgreen  color10 #98bb6c
+set_from_resource $yellow     color3  #c0a36e
+set_from_resource $darkyellow color11 #e6c384
+set_from_resource $blue       color4  #7e9cd8
+set_from_resource $darkblue   color12 #7fb4ca
+set_from_resource $magenta    color5  #957fb8
+set_from_resource $darkmagenta color13 #938aa9
+set_from_resource $cyan       color6  #6a9589
+set_from_resource $darkcyan   color14 #7aa89f
+set_from_resource $white      color7  #c8c093
+set_from_resource $darkwhite  color15 #dcd7ba
 
 set $ws1 "1:I"
 set $ws2 "2:II"
@@ -33,14 +42,13 @@ bar {
     position top
     status_command ~/.cargo/bin/i3status-rs ~/.dotfiles/i3status-rs.toml
     colors {
-        separator $bg
-        background $bg
-        statusline $light
+        separator $background
+        background $background
+        statusline $darkwhite
         # border / bg / text
-        focused_workspace    $aqua $aqua $darkgray
-        inactive_workspace   $darkgray $darkgray $yellow
-        active_workspace     $darkgray $darkgray $yellow
-        urgent_workspace     $red $red $bg  
+        focused_workspace  $darkgreen $background $foreground
+        inactive_workspace $darkblack $background $foreground
+        urgent_workspace   $red  $background $foregroun
     }
 }
 

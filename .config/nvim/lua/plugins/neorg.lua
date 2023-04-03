@@ -5,7 +5,8 @@ local M = {
   ft = {'norg'},
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
-    { 'nvim-neorg/neorg-telescope' }
+    { 'nvim-neorg/neorg-telescope' },
+    { 'nvim-treesitter/nvim-treesitter' },
   },
   keys = {
     { '<Leader>wc',

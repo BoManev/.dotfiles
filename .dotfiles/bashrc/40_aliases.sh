@@ -1,5 +1,7 @@
 #! usr/bin/env bash
 
+alias c='clear -x' # [c]lean
+alias f='clear' # [f]flush
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
