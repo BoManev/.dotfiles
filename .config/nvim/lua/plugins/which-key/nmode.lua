@@ -32,7 +32,7 @@ return {
   },
   ['<Leader>l'] = {
     name = '[l]sp',
-    ['K'] = 'hover',
+    ['h'] = '[h]over',
     ['d'] = '[d]efinition',
     ['D'] = '[D]eclaration',
     ['i'] = '[i]mplementation',

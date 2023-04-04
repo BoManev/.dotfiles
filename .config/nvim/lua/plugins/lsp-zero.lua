@@ -19,8 +19,10 @@ local M = {
 
     -- UI
     {'onsails/lspkind.nvim'},
+
     -- Extras 
-    {'p00f/clangd_extensions.nvim'}
+    {'p00f/clangd_extensions.nvim'},
+    {'folke/neodev.nvim'}
   }
 }
 
@@ -40,7 +42,7 @@ end
 
 local function keybinds(bufnr)
   local opts = {buffer = bufnr, remap = false}
-  vim.keymap.set("n", "<leader>lK", function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>ld", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "<leader>lD", function() vim.lsp.buf.declaration() end, opts)
   vim.keymap.set("n", "<leader>li", function() vim.lsp.buf.implementation() end, opts)
@@ -138,8 +140,10 @@ function M.config()
       end
     }
   })
+  require('neodev').setup({})
   local lspconf = require('lspconfig')
-  lspconf.lua_ls.setup(lsp.nvim_lua_ls())
+  lspconf.lua_ls.setup({})
+  --lspconf.lua_ls.setup(lsp.nvim_lua_ls())
 
   lsp.setup()
   init_cmd()
