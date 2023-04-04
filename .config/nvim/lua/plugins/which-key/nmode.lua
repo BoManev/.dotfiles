@@ -73,6 +73,7 @@ return {
     ["u"] = "lowercase N",
     ["v"] = "last [v]isual",
   },
+  ['q:'] = 'cmd buffer',
   -- Regular maps, no prefix
   ["<Esc>"] = "Clear highlights",
   ["<Tab>"] = "Fold/unfold",

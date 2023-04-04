@@ -51,7 +51,8 @@ vim.opt.laststatus = 3
 vim.opt.list = true
 vim.opt.listchars = 'tab:→ ,eol:↵,trail:·,extends:↷,precedes:↶'
 
-vim.opt.completeopt = "menu,menuone,noselect,noinsert"
+vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.wildmenu = true
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true

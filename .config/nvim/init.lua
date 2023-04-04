@@ -1,7 +1,7 @@
 require('core')
 require('keys')
 require('ftypes')
-require('lazy').setup('plugins')
+require('lazy').setup('plugins', {lazy = true})
 require('autos')
 
 require('telescope')

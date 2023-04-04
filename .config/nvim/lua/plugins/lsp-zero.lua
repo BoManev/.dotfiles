@@ -1,34 +1,41 @@
 local M = {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
-      {'williamboman/mason.nvim'},           -- Optional
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+  'VonHeikemen/lsp-zero.nvim',
+  branch = 'v2.x',
+  dependencies = {
+    -- LSP Support
+    {'neovim/nvim-lspconfig'},
+    {'williamboman/mason.nvim'},
+    {'williamboman/mason-lspconfig.nvim'},
 
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
-      {'hrsh7th/cmp-nvim-lsp'}, -- Required
-      {'L3MON4D3/LuaSnip'},     -- Required
+    -- Autocompletion
+    {'hrsh7th/nvim-cmp'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/cmp-buffer'},
+    {'hrsh7th/cmp-path'},
+    {'petertriho/cmp-git', dependencies = { 'nvim-lua/plenary.nvim' }},
+    -- Snippets
+    {'saadparwaiz1/cmp_luasnip'},
+    {'L3MON4D3/LuaSnip'},
 
-      -- Extras 
-      {'p00f/clangd_extensions.nvim'}
-    }
+    -- UI
+    {'onsails/lspkind.nvim'},
+    -- Extras 
+    {'p00f/clangd_extensions.nvim'}
+  }
 }
 
 local function init_mason()
   require('mason').setup({
-        ui = {
-            border = 'rounded'
-        }
-    })
-    require("mason-lspconfig").setup({
-        ensure_installed = {
-            "rust_analyzer",
-            "clangd"
-        }
-    })
+    ui = {
+      border = 'rounded'
+    }
+  })
+  require("mason-lspconfig").setup({
+    ensure_installed = {
+      "rust_analyzer",
+      "clangd"
+    }
+  })
 end
 
 local function keybinds(bufnr)
@@ -49,11 +56,7 @@ local function keybinds(bufnr)
 end
 
 local function init_lsp()
-  local lsp = require('lsp-zero').preset({
-    manage_nvim_cmp = {
-      set_sources = 'recommended'
-    }
-  })
+  local lsp = require('lsp-zero').preset({})
   lsp.on_attach(function(_, bufnr)
     keybinds(bufnr)
   end)
@@ -64,18 +67,36 @@ end
 local function init_cmd()
   local cmp = require('cmp')
   local cmp_action = require('lsp-zero').cmp_action()
-  return require('cmp').setup({
+  cmp.setup({
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
+    -- extends sources using autos cmp.setup.buffer
     sources = {
-      {name = 'nvim_lsp'},
-      {name = 'nvim_lua'},
+      { name = 'nvim_lua' },
+
+      { name = 'nvim_lsp' },
+      { name = 'path' },
+      { name = 'buffer', keyword_length = 5 },
+      { name = 'luasnip', keyword_length = 2}
     },
     mapping = {
-      ['<Tab>'] = cmp_action.tab_complete(),
-      ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<C-p>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-n>'] = cmp.mapping.scroll_docs(4),
+      ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+      ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+    },
+    formatting = {
+      fields = {'abbr', 'kind', 'menu'},
+      format = require('lspkind').cmp_format({
+        mode = 'symbol_text', -- show only symbol annotations
+        maxwidth = 50, -- prevent the popup from showing more than provided characters
+        ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
+      })
     },
     sorting = {
       comparators = {
@@ -89,6 +110,20 @@ local function init_cmd()
         cmp.config.compare.order,
       },
     },
+  })
+
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' },
+    }, {
+        { name = 'buffer' },
+      })
   })
 end
 
