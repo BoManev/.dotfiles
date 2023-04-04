@@ -34,3 +34,19 @@ vim.api.nvim_create_autocmd('BufEnter', {
     vim.api.nvim_command([[execute "!zathura '%' &"| bdelete % | :E]])
   end
 })
+
+local numbertogglegroup = augroup("numbertoggle")
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
+    pattern = "*",
+    callback = function()
+        vim.wo.relativenumber = true
+    end,
+    group = numbertogglegroup,
+})
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
+    pattern = "*",
+    callback = function()
+        vim.wo.relativenumber = false
+    end,
+    group = numbertogglegroup,
+})
