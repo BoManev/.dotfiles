@@ -1,8 +1,7 @@
 local M = {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    'nvim-telescope/telescope.nvim', branch = 'master',
     dependencies = {
       { 'nvim-lua/plenary.nvim'},
-      { 'nvim-neorg/neorg' }
     },
     keys = {
         {'<leader>tt', '<CMD>Telescope<CR>'},
@@ -16,11 +15,9 @@ local M = {
 }
 
 function M.config()
-  require("telescope").load_extension("neorg")
   local actions = require("telescope.actions")
   local trouble = require("trouble.providers.telescope")
 
-  local telescope = require("telescope")
   require('telescope').setup {
     defaults = {
       mappings = {

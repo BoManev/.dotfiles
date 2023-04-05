@@ -1,5 +1,7 @@
 local M = {
   'folke/trouble.nvim',
+  event = 'VeryLazy',
+  lazy= true,
   cmd = {'Trouble'},
   dependencies = {
     'nvim-tree/nvim-web-devicons',

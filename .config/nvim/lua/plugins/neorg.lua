@@ -1,11 +1,12 @@
 local M = {
   'nvim-neorg/neorg',
   build = ':Neorg sync-parsers',
+  lazy = true,
+  event = 'VeryLazy',
   cmd = {'Neorg'},
   ft = {'norg'},
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
-    { 'nvim-neorg/neorg-telescope' },
     { 'nvim-treesitter/nvim-treesitter' },
   },
   keys = {
@@ -50,6 +51,6 @@ function M.config()
     }
   })
 
-  end
+end
 
 return M

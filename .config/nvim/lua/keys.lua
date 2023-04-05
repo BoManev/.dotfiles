@@ -1,12 +1,7 @@
-vim.keymap.set('n', '<leader>e', vim.cmd.Ex, {silent = true, noremap = true})
-function JbzCppMan()
-    local old_isk = vim.o.iskeyword()
-    vim.o.iskeyword = old_isk .. ":"
-    local str = vim.fn.expand("<cword>")
-    vim.o.iskeyword = old_isk
-    vim.cmd("Man " .. str)
-end
+local opts = {buffer = bufnr, remap = false}
+vim.keymap.set('n', '<leader>e', vim.cmd.Ex, opts)
+vim.keymap.set('n', 'z?', function() vim.opt.spell = true end, opts)
 
-vim.cmd("command! JbzCppMan lua JbzCppMan()")
-
-
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set('n', '<leader>ss', '<cmd> source ~./config/nvim/')

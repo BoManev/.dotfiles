@@ -54,7 +54,7 @@ local function keybinds(bufnr)
   vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
   vim.keymap.set("n", "<leader>lx", function() vim.diagnostic.open_float() end, opts)
   vim.keymap.set("n", "<leader>ln", function() vim.diagnostic.goto_next() end, opts)
-  vim.keymap.set("n", "<leader>lp", function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set("n", "<leader>lp", function() vim.diagnostic.goto_prev({}) end, opts)
 end
 
 local function init_lsp()
@@ -142,7 +142,15 @@ function M.config()
   })
   require('neodev').setup({})
   local lspconf = require('lspconfig')
-  lspconf.lua_ls.setup({})
+  lspconf.lua_ls.setup({
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = "Replace"
+        }
+      }
+    }
+  })
   --lspconf.lua_ls.setup(lsp.nvim_lua_ls())
 
   lsp.setup()

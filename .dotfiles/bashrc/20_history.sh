@@ -7,4 +7,23 @@ HISTCONTROL=ignoreboth
 HISTFILESIZE=
 HISTSIZE=
 HISTTIMEFORMAT="%F %T "
-HISTIGNORE="ls:ll:lt:la:nvim*:cd *:pwd:bg *:fg *:history *:clear:c:f:z *"
+HISTIGNORE="ls:\
+ll:\
+lt:\
+la:\
+nvim*:\
+cd *:\
+pwd:\
+bg *:\
+bg:\
+fg:\
+fg *:\
+history:\
+history *:\
+clear:\
+c:\
+f:\
+z:\
+z *:\
+dotfiles:\
+dotfiles *"

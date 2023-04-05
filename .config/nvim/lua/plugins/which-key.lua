@@ -7,46 +7,76 @@ local M = {
   },
 
 }
-
+local nmode = {
+   ['<Leader>f'] = {
+    name = '[f]ind',
+    ['t'] = '[t]elescope',
+    ['b'] = '[b]uffer',
+    ['f'] = '[f]ile',
+    ['g'] = '[g]it',
+    ['s'] = '[s]tring',
+    ['r'] = '[r]egister',
+    ['p'] = '[p]reviou'
+  },
+  ['<Leader>d'] = {
+    name = '[d]iagnostics',
+    ['t'] = '[t]oggle',
+    ['w'] = '[w]orkspace',
+    ['c'] = '[c]urrent',
+    ['l'] = '[l]ocations',
+    ['q'] = '[q]uickfix',
+    ['r'] = '[r]eferences'
+  },
+  ['<Leader>e'] = '[e]xplorer',
+  ['<Leader>w'] = {
+    name = '[w]iki',
+    ['s'] = '[s]earch',
+    ['l'] = '[l]ink',
+    ['c'] = '[c]onceal',
+    ['r'] = '[r]eturn',
+    ['i'] = '[i]ndex',
+    ['e'] = '[e]xport',
+    ['j'] = '[j]ournal'
+  },
+  ['<Leader>l'] = {
+    name = '[l]sp',
+    ['h'] = '[h]over',
+    ['d'] = '[d]efinition',
+    ['D'] = '[D]eclaration',
+    ['i'] = '[i]mplementation',
+    ['t'] = '[t]ype',
+    ['r'] = '[r]eferences',
+    ['s'] = '[s]ignature',
+    ['R'] = '[R]ename',
+    ['f'] = '[f]ormat',
+    ['a'] = '[a]ction',
+    ['x'] = 'diagnostics',
+    ['[d'] = 'previous x',
+    [']d'] = 'previous x'
+  },
+}
 function M.config()
   local wk = require('which-key')
   wk.setup({
     plugins = {
+      mark = false,
+      registers = false,
       spelling = {
-        enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-        suggestions = 20, -- how many suggestions should be shown in the list?
+        enabled = true,
+        suggestions = 20,
       },
       presets = {
         operators = true, -- adds help for operators like d, y, ...
         motions = true, -- adds help for motions
         text_objects = true, -- help for text objects triggered after entering an operator
-        windows = false, -- default bindings on <c-w>
-        nav = false, -- misc bindings to work with windows
+        windows = true, -- default bindings on <c-w>
+        nav = true, -- misc bindings to work with windows
         z = true, -- bindings for folds, spelling and others prefixed with z
         g = true, -- bindings for prefixed with g
       },
+
     },
-    operators = {
-      ["d"] = "Delete",
-      ["c"] = "Change",
-      ["v"] = "Visual character",
-      ["y"] = "Yank",
-      ["g~"] = "Toggle case",
-      ["gc"] = "Toggle comment",
-      ["gu"] = "Make lowercase",
-      ["gU"] = "Make uppercase",
-      ["<LT>"] = "De-indent",
-      [">"] = "Indent",
-      ["zf"] = "Create fold",
-    },
-    key_labels = {
-      -- override the label used to display some keys. It doesn't effect WK in any other way.
-      -- For example:
-      -- ["<space>"] = "SPC",
-      -- ["<cr>"] = "RET",
-      -- ["<tab>"] = "TAB",
-    },
-    motions = {
+        motions = {
       count = true,
     },
     icons = {
@@ -63,7 +93,7 @@ function M.config()
       position = "bottom", -- bottom, top
       margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
       padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+      winblend = 30, -- value between 0-100 0 for fully opaque and 100 for fully transparent
     },
     layout = {
       height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -83,9 +113,6 @@ function M.config()
       "'",
       "g`",
       "g'",
-      -- registers
-      '"',
-      "<c-r>",
       -- spelling
       "z=",
     },
@@ -99,8 +126,8 @@ function M.config()
     },
   })
 
-  require('which-key').register(require('plugins.which-key.nmode'), { mode = 'n' })
-  require('which-key').register(require('plugins.which-key.imode'), { mode = 'i' })
+  require('which-key').register(nmode, { mode = 'n' })
+  --require('which-key').register(require('plugins.which-key.imode'), { mode = 'i' })
   --wk.register(require("core.plugins.utility.which-key.motions"), { mode = "o" })
   --wk.register(require("core.plugins.utility.which-key.insert-mode"), { mode = "i" })
 
