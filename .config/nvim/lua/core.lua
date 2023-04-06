@@ -3,10 +3,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Providers
-vim.env.PATH = '/home/bo/tools/nvm/versions/node/v18.15.0/bin/:'.. vim.env.PATH
+vim.env.PATH = '/home/bo/tools/nvm/versions/node/v18.15.0/bin/:' .. vim.env.PATH
 --vim.g.node_host_prog = '/home/bo/tools/nvm/versions/node/v18.15.0/bin/nvim-node-host'
 --vim.g.loaded_node_provider = 1
-if os.getenv("CONDA_PREFIX") ~= nil and os.getenv("CONDA_PREFIX") ~= '' then
+if os.getenv('CONDA_PREFIX') ~= nil and os.getenv('CONDA_PREFIX') ~= '' then
   vim.g.python3_host_prog = vim.env.CONDA_PREFIX .. '/bin/python3'
   vim.g.loaded_python3_provide = 1
 else
@@ -16,7 +16,7 @@ end
 vim.opt.termguicolors = true
 
 vim.opt.hlsearch = false
-vim.opt.ignorecase = true     -- use /C for case sensitive search
+vim.opt.ignorecase = true -- use /C for case sensitive search
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 
@@ -42,7 +42,7 @@ vim.opt.undodir = os.getenv('HOME') .. '/tools/nvim/undodir'
 vim.opt.undofile = true
 
 vim.opt.signcolumn = 'auto'
-vim.opt.cc ='80'
+vim.opt.cc = '80'
 
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
@@ -51,13 +51,13 @@ vim.opt.laststatus = 3
 vim.opt.list = true
 vim.opt.listchars = 'tab:→ ,eol:↵,trail:·,extends:↷,precedes:↶'
 
-vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.wildmenu = true
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
---vim.o.clipboard = 'unnamedplus'
+vim.opt.iskeyword:append("-")
 
 -- Package Manager
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'

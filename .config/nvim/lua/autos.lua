@@ -11,8 +11,8 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.breakindent = true
     vim.opt_local.signcolumn = 'no'
     -- rebuild spell file
-    -- :mkspell! ~/.config/nvim/spell/en.utf-8.add.spl ~/.config/nvim/spell/en.utf-8.add  
-  end
+    -- :mkspell! ~/.config/nvim/spell/en.utf-8.add.spl ~/.config/nvim/spell/en.utf-8.add
+  end,
 })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -22,31 +22,31 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank({
       on_visual = false,
       higroup = 'IncSearch',
-      timeout = 500
+      timeout = 500,
     })
   end,
 })
 
 vim.api.nvim_create_autocmd('BufEnter', {
   group = augroup('pdf'),
-  pattern = {'*.pdf'},
+  pattern = { '*.pdf' },
   callback = function()
     vim.api.nvim_command([[execute "!zathura '%' &"| bdelete % | :E]])
-  end
+  end,
 })
 
-local numbertogglegroup = augroup("numbertoggle")
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
-    pattern = "*",
-    callback = function()
-        vim.wo.relativenumber = true
-    end,
-    group = numbertogglegroup,
+local numbertogglegroup = augroup('numbertoggle')
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+  pattern = '*',
+  callback = function()
+    vim.wo.relativenumber = true
+  end,
+  group = numbertogglegroup,
 })
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
-    pattern = "*",
-    callback = function()
-        vim.wo.relativenumber = false
-    end,
-    group = numbertogglegroup,
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
+  pattern = '*',
+  callback = function()
+    vim.wo.relativenumber = false
+  end,
+  group = numbertogglegroup,
 })
