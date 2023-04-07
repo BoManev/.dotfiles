@@ -18,6 +18,7 @@ function M.config()
   local icons = require('icons')
   local cmp = require('cmp')
   local compare = require('cmp.config.compare')
+  local cmp_action = require('lsp-zero').cmp_action()
   cmp.setup({
     completion = {
       completeopt = 'menu,menuone,noinsert',
@@ -26,6 +27,10 @@ function M.config()
       expand = function(args)
         require('luasnip').lsp_expand(args.body)
       end,
+    },
+    mapping = {
+      ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+      ['<C-b>'] = cmp_action.luasnip_jump_backward(),
     },
     window = {
       completion = cmp.config.window.bordered(),

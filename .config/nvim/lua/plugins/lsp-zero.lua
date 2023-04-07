@@ -3,15 +3,20 @@ return {
   branch = 'v2.x',
   lazy = true,
   config = function()
-    local lsp = require('lsp-zero.settings').preset({})
+    require('lsp-zero.settings').preset({
+      float_border = 'rounded',
+      call_servers = 'local',
+      configure_diagnostics = true,
+      setup_servers_on_start = false,
+      set_lsp_keymaps = false,
+      manage_nvim_cmp = {
+        set_sources = false,
+        set_basic_mappings = true,
+        set_extra_mappings = true,
+        use_luasnip = true,
+        set_format = true,
+        documentation_window = true,
+      },
+    })
   end,
 }
---    lsp.skip_server_setup({'clangd'})
---  require("clangd_extensions").setup({
---    server = {
---      on_attach = function(_, bufnr)
---        keybinds(bufnr)
---      end
---    }
---  })
---

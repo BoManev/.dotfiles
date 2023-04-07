@@ -98,10 +98,11 @@ function M.config()
   null_ls.setup({
     debug = true,
     on_attach = function(client, bufnr)
-      null_opts.on_attach(client, bufnr)
+      null_opts.on_attach()
     end,
     sources = {
       null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.clang_format,
     },
   })
 
@@ -118,7 +119,7 @@ function M.config()
       timeout_ms = 10000,
     },
     servers = {
-      ['null-ls'] = { 'lua' },
+      ['null-ls'] = { 'lua', 'cpp', 'c' },
     },
   })
 end
