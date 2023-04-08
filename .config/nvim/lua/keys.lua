@@ -33,13 +33,12 @@ bind({ 'n', 'v' }, '<leader>y', [["+y]], opts)
 -- don't save to register
 bind('n', 'x', '"_x')
 
--- Navigate between buffers
-bind('n', '[b', ':bprevious<CR>')
-bind('n', ']b', ':bnext<CR>')
-
--- Navigate between tabpages
-bind('n', '[t', ':tabprevious<CR>')
-bind('n', ']t', ':tabnext<CR>')
+-- no copy on past
+bind("v", "p", '"_dP')
 
 -- Open new tabpage
 bind('n', '<Leader>tn', ':tabnew<CR>')
+
+-- movement with wrapped lines
+bind('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+bind('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

@@ -24,8 +24,10 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.smartindent = true
 vim.opt.autoindent = true
+vim.opt.copyindent = true
+vim.opt.smartindent = true
+vim.opt.preserveindent = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -41,7 +43,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv('HOME') .. '/tools/nvim/undodir'
 vim.opt.undofile = true
 
-vim.opt.signcolumn = 'auto'
+vim.opt.signcolumn = 'auto:1-3'
 vim.opt.cc = '81'
 
 vim.opt.scrolloff = 8
@@ -51,13 +53,17 @@ vim.opt.laststatus = 3
 vim.opt.list = true
 vim.opt.listchars = 'tab:→ ,eol:↵,trail:·,extends:↷,precedes:↶'
 
-vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 vim.opt.wildmenu = true
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.opt.iskeyword:append("-")
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+vim.opt.confirm = true
+vim.opt.iskeyword:append('-')
 
 -- Package Manager
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -71,4 +77,26 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
+local builtins = {
+  "tar",
+  "zip",
+  "gzip",
+  "tarPlugin",
+  "zipPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "logipat",
+  "rrhelper",
+}
+for _, builtin in ipairs(builtins) do
+  vim.g["loaded_" .. builtin] = 1
+end
+--local providers = { "perl", "node", "ruby", "python", "python3" }
+--for _, provider in ipairs(providers) do
+--  vim.g["loaded_" .. provider .. "_provider"] = 0
+--end

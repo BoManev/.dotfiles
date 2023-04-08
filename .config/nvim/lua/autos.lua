@@ -2,6 +2,7 @@ local function augroup(name)
   return vim.api.nvim_create_augroup(name, { clear = true })
 end
 
+-- change formating for documants
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('txtdoc'),
   pattern = { 'gitcommit', 'markdown', 'norg' },
@@ -10,11 +11,10 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.spell = true
     vim.opt_local.breakindent = true
     vim.opt_local.signcolumn = 'no'
-    -- rebuild spell file
-    -- :mkspell! ~/.config/nvim/spell/en.utf-8.add.spl ~/.config/nvim/spell/en.utf-8.add
   end,
 })
 
+-- highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = augroup('highlight_yank'),
   pattern = '*',
@@ -27,6 +27,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- open pdfs with zathura
 vim.api.nvim_create_autocmd('BufEnter', {
   group = augroup('pdf'),
   pattern = { '*.pdf' },
@@ -35,6 +36,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
+-- toggle between relative and absolute numbers
 local numbertogglegroup = augroup('numbertoggle')
 vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
   pattern = '*',
@@ -49,4 +51,16 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
     vim.wo.relativenumber = false
   end,
   group = numbertogglegroup,
+})
+
+-- open buffer without folds
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'FileReadPost' }, {
+  pattern = '*',
+  callback = function()
+    if vim.bo.filetype == 'norg' then
+      return
+    end
+    vim.cmd('normal zR')
+  end,
+  group = augroup('open_folds'),
 })
