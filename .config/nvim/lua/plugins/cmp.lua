@@ -10,12 +10,12 @@ local M = {
     { 'onsails/lspkind.nvim' },
     { 'hrsh7th/cmp-cmdline' },
     { 'L3MON4D3/LuaSnip' },
-    {'p00f/clangd_extensions.nvim'},
+    { 'p00f/clangd_extensions.nvim' },
+    { 'onsails/lspkind.nvim'}
   },
 }
 function M.config()
   require('lsp-zero.cmp').extend()
-  local icons = require('icons')
   local cmp = require('cmp')
   local compare = require('cmp.config.compare')
   local cmp_action = require('lsp-zero').cmp_action()
@@ -44,44 +44,26 @@ function M.config()
       { name = 'luasnip', keyword_length = 2 },
       { name = 'git' },
     },
-    formatting = {
-      fields = { 'kind', 'abbr', 'menu' },
-      format = function(entry, item)
-        local max_width = 0
-        local source_names = {
-          nvim_lsp = '(LSP)',
-          path = '(Path)',
-          luasnip = '(Snippet)',
-          buffer = '(Buffer)',
-        }
-        local duplicates = {
-          buffer = 1,
-          path = 1,
-          nvim_lsp = 0,
-          luasnip = 1,
-        }
-        local duplicates_default = 0
-        if max_width ~= 0 and #item.abbr > max_width then
-          item.abbr = string.sub(item.abbr, 1, max_width - 1) .. icons.ui.Ellipsis
-        end
-        item.kind = icons.kind[item.kind]
-        item.menu = source_names[entry.source.name]
-        item.dup = duplicates[entry.source.name] or duplicates_default
-        return item
-      end,
-    },
     sorting = {
       comparators = {
         compare.score,
         compare.recently_used,
         compare.offset,
         compare.exact,
-        require("clangd_extensions.cmp_scores"),
+        require('clangd_extensions.cmp_scores'),
         compare.kind,
         compare.sort_text,
         compare.length,
         compare.order,
       },
+    },
+    formatting = {
+      fields = { 'abbr', 'kind', 'menu' },
+      format = require('lspkind').cmp_format({
+        mode = 'symbol',
+        maxwidth = 50,
+        ellipsis_char = '...',
+      }),
     },
   })
 

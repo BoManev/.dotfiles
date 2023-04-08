@@ -42,7 +42,7 @@ vim.opt.undodir = os.getenv('HOME') .. '/tools/nvim/undodir'
 vim.opt.undofile = true
 
 vim.opt.signcolumn = 'auto'
-vim.opt.cc = '80'
+vim.opt.cc = '81'
 
 vim.opt.scrolloff = 8
 vim.opt.wrap = false

@@ -1,6 +1,5 @@
 require('core')
+require('lazy').setup('plugins')
 require('keys')
-require('ftypes')
-require('lazy').setup('plugins', { lazy = true })
 require('autos')
 require('cmd')

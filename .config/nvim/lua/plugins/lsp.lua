@@ -21,7 +21,7 @@ local M = {
     { 'folke/neodev.nvim' },
   },
 }
-function attached(bufnr)
+local function attached(bufnr)
   local opts = { buffer = bufnr, remap = false }
   vim.keymap.set('n', '<leader>lh', function()
     vim.lsp.buf.hover()
@@ -39,7 +39,7 @@ function attached(bufnr)
     vim.lsp.buf.type_definition()
   end, opts)
   vim.keymap.set('n', '<leader>lr', function()
-    vim.lsp.buf.type_references()
+    vim.lsp.buf.references()
   end, opts)
   vim.keymap.set('n', '<leader>ls', function()
     vim.lsp.buf.signature_help()
@@ -108,7 +108,7 @@ function M.config()
 
   require('mason-null-ls').setup({
     ensure_installed = nil,
-    automatic_installation = true, -- You can still set this to `true`
+    automatic_installation = false;
     automatic_setup = true,
   })
 

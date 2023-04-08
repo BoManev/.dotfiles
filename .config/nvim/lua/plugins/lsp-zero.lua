@@ -7,7 +7,7 @@ return {
       float_border = 'rounded',
       call_servers = 'local',
       configure_diagnostics = true,
-      setup_servers_on_start = false,
+      setup_servers_on_start = true,
       set_lsp_keymaps = false,
       manage_nvim_cmp = {
         set_sources = false,
