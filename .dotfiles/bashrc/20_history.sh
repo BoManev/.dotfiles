@@ -2,7 +2,9 @@
 
 shopt -s histappend
 set +o histexpand
-HISTCONTROL=ignoreboth
+shopt -s histverify
+shopt -s cmdhist
+HISTCONTROL="erasedups:ignoreboth"
 # infinity history
 HISTFILESIZE=
 HISTSIZE=
