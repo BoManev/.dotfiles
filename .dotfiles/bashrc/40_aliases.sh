@@ -34,3 +34,4 @@ alias aterminfo='wget https://raw.githubusercontent.com/alacritty/alacritty/mast
 alias dotfiles='git --git-dir=$HOME/.dotrepo/ --work-tree=$HOME'
 alias benchnvim='hyperfine "nvim --headless +qa" --warmup 5'
 alias ah=' annotate_history'
+alias lg='go run ~/tools/sources/lazygit/main.go'

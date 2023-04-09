@@ -16,8 +16,11 @@ PATH=$HOME/tools/bin:$PATH
 PATH=$HOME/.dotfiles/scripts/functions:$PATH
 
 . $HOME/.cargo/env
+
 export GOROOT=$HOME/tools/sources/go
 export GOPATH=$HOME/tools/go
+PATH=$GOPATH/bin:$PATH
+
 export NVM_DIR=$HOME/tools/nvm
 
 export MANPAGER="nvim +Man!"
