@@ -31,7 +31,7 @@ alias mysql='sudo mysql -u root -p'
 alias msql='mysql -u root -p --show-warnings'
 # install terminfo for alacritty when ssh on server
 alias aterminfo='wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info && tic -xe alacritty,alacritty-direct alacritty.info && rm alacritty.info'
-alias dotfiles='git --git-dir=$HOME/.dotrepo/ --work-tree=$HOME'
+alias ld='lazygit --git-dir=$HOME/.dotrepo/ --work-tree=$HOME' # [l]azy [d]otfiles
+alias gd='git --git-dir=$HOME/.dotrepo/ --work-tree=$HOME' # [g]it [d]otfiles
 alias benchnvim='hyperfine "nvim --headless +qa" --warmup 5'
 alias ah=' annotate_history'
-alias lg='go run ~/tools/sources/lazygit/main.go'
