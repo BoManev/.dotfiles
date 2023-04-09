@@ -1,5 +1,4 @@
-require('core')
-require('lazy').setup('plugins')
+require('plug')
+require('editor')
 require('keys')
-require('autos')
-require('cmd')
+require('cmds')

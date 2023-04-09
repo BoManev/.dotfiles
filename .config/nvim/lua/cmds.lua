@@ -64,3 +64,22 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'FileReadPost' }, {
   end,
   group = augroup('open_folds'),
 })
+
+-- disable auto comments (set by builtin ftplugin)
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  pattern = '*',
+  callback = function()
+    vim.o.formatoptions = 'tcqj'
+    vim.opt.formatoptions = vim.opt.formatoptions
+      - 'a' -- don't format
+      - 't' -- don't auto format
+      + 'c' -- respect textwidth
+      + 'q' -- format with gq
+      - 'o' -- don't continue comment after O and o,
+      + 'r' -- continue with comment after enter.
+      + 'n' -- respect numbered
+      + 'j' -- auto remove
+      - '2' -- no paragraph indent
+  end,
+  group = augroup('no_auto_comments'),
+})
