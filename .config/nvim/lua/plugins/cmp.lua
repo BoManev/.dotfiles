@@ -1,8 +1,6 @@
 local M = {
   'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
   dependencies = {
-    { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
     { 'petertriho/cmp-git', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -11,14 +9,14 @@ local M = {
     { 'hrsh7th/cmp-cmdline' },
     { 'L3MON4D3/LuaSnip' },
     { 'p00f/clangd_extensions.nvim' },
-    { 'onsails/lspkind.nvim'}
+    { 'onsails/lspkind.nvim' },
   },
 }
 function M.config()
   require('lsp-zero.cmp').extend()
   local cmp = require('cmp')
   local compare = require('cmp.config.compare')
-  local cmp_action = require('lsp-zero').cmp_action()
+  local cmp_action = require('lsp-zero.cmp').action()
   cmp.setup({
     completion = {
       completeopt = 'menu,menuone,noinsert',

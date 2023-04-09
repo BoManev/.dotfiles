@@ -8,16 +8,6 @@ local M = {
   },
 }
 local nmode = {
-  ['<Leader>f'] = {
-    name = '[f]ind',
-    ['t'] = '[t]elescope',
-    ['b'] = '[b]uffer',
-    ['f'] = '[f]ile',
-    ['g'] = '[g]it',
-    ['s'] = '[s]tring',
-    ['r'] = '[r]egister',
-    ['p'] = '[p]reviou',
-  },
   ['<Leader>d'] = {
     name = '[d]iagnostics',
     ['t'] = '[t]oggle',

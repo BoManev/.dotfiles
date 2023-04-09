@@ -1,4 +1,4 @@
 require('plug')
 require('editor')
-require('keys')
+require('keys').generic_keys()
 require('cmds')
