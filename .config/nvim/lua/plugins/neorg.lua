@@ -1,8 +1,6 @@
 local M = {
   'nvim-neorg/neorg',
   build = ':Neorg sync-parsers',
-  lazy = true,
-  event = 'VeryLazy',
   cmd = { 'Neorg' },
   ft = { 'norg' },
   dependencies = {

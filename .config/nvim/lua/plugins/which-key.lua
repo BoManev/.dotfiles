@@ -1,6 +1,7 @@
 local M = {
   'folke/which-key.nvim',
   event = 'VeryLazy',
+  priority = 1,
   keys = {
     { 'g?', '<CMD>WhichKey<CR>', mode = { 'n', 'v' } },
     { '<C-g>?', '<CMD>WhichKey<CR>', mode = { 'i' } },

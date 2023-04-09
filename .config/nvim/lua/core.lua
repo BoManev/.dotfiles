@@ -59,9 +59,6 @@ vim.opt.wildmenu = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
 vim.opt.confirm = true
 vim.opt.iskeyword:append('-')
 

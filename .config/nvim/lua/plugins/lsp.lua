@@ -5,6 +5,7 @@ local M = {
   dependencies = {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'williamboman/mason-lspconfig.nvim' },
+    {'VonHeikemen/lsp-zero.nvim'},
     {
       'williamboman/mason.nvim',
       build = ':MasonUpdate',
