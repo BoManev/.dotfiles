@@ -28,7 +28,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv('HOME') .. '/tools/nvim/undodir'
 vim.opt.undofile = true
 
-vim.opt.signcolumn = 'auto:1-3'
+vim.opt.signcolumn = 'auto:1-2'
 vim.opt.cc = '81'
 
 vim.opt.scrolloff = 8
@@ -66,7 +66,7 @@ for _, builtin in ipairs(builtins) do
   vim.g['loaded_' .. builtin] = 1
 end
 
-local providers = { 'perl', 'node', 'ruby' }
+local providers = { 'perl', 'node', 'ruby', 'python3', 'python' }
 for _, provider in ipairs(providers) do
   vim.g['loaded_' .. provider .. '_provider'] = 0
 end
@@ -77,7 +77,7 @@ vim.env.PATH = '/home/bo/tools/nvm/versions/node/v18.15.0/bin/:' .. vim.env.PATH
 --vim.g.loaded_node_provider = 1
 if os.getenv('CONDA_PREFIX') ~= nil and os.getenv('CONDA_PREFIX') ~= '' then
   vim.g.python3_host_prog = vim.env.CONDA_PREFIX .. '/bin/python3'
-  vim.g.loaded_python3_provide = 1
+  vim.g.loaded_python3_provider = 1
 else
   vim.g.loaded_python3_provider = 0
 end

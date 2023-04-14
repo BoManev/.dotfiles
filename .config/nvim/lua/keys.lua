@@ -78,9 +78,6 @@ M.generic_keys = function()
   -- don't save to register
   bind('n', 'x', '"_x')
 
-  -- no copy on past
-  bind('v', 'p', '"_dP')
-
   -- Open new tabpage
   bind('n', '<Leader>tn', ':tabnew<CR>')
 

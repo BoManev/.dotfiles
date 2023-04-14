@@ -1,5 +1,6 @@
 local M = {
   'hrsh7th/nvim-cmp',
+  event = 'InsertEnter',
   dependencies = {
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
@@ -8,7 +9,6 @@ local M = {
     { 'onsails/lspkind.nvim' },
     { 'hrsh7th/cmp-cmdline' },
     { 'L3MON4D3/LuaSnip' },
-    { 'p00f/clangd_extensions.nvim' },
     { 'onsails/lspkind.nvim' },
   },
 }

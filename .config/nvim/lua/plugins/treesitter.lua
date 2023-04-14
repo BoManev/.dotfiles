@@ -1,7 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':tsupdate',
+    build = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
@@ -90,7 +90,7 @@ return {
           ['o'] = '[o]outer',
           ['s'] = '[s]cope',
           ['n'] = 'swap [n]ext',
-          ['p'] = 'swap [p]rev'
+          ['p'] = 'swap [p]rev',
         },
       })
     end,

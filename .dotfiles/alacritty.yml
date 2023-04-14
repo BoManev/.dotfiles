@@ -78,7 +78,7 @@ key_bindings:
   - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
   
   # (Windows, Linux, and BSD only)
-  - { key: X,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  - { key: P,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
   - { key: C,              mods: Control|Shift,                   action: Copy             }
   - { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
   - { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }

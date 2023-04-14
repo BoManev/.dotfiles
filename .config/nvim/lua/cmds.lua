@@ -83,3 +83,13 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   end,
   group = augroup('no_auto_comments'),
 })
+
+-- change formating for plugins
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = augroup('plugdoc'),
+  pattern = { 'lazy', 'mason', 'help', 'checkhealth', 'netrw' },
+  callback = function()
+    vim.opt_local.signcolumn = 'no'
+  end,
+})
+

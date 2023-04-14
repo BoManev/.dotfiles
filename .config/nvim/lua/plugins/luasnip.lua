@@ -13,6 +13,7 @@ local M = {
 M.config = function()
   local ls = require('luasnip')
   local types = require('luasnip.util.types')
+  require('luasnip.loaders.from_lua').lazy_load({paths = '~/snippets'})
   ls.setup({
     history = true,
     update_events = 'TextChanged,TextChangedI',
@@ -31,4 +32,5 @@ M.config = function()
     ft_func = require('luasnip.extras.filetype_functions').from_cursor,
   })
 end
+
 return M

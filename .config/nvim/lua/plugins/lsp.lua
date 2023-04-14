@@ -7,9 +7,9 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup()
       require('mason-null-ls').setup({
-        ensure_installed = { 'stylua' },
+        ensure_installed = nil,
         automatic_installation = false,
-        automatic_setup = true,
+        handlers = {},
       })
     end,
     dependencies = {
@@ -20,16 +20,7 @@ return {
   },
   {
     'p00f/clangd_extensions.nvim',
-    ft = { 'c', 'cpp', 'h', 'hpp' },
-    config = function()
-      require('clangd_extensions').setup({
-        server = {
-          on_attach = function(_, bufnr)
-            require('keys').lsp_keys(bufnr)
-          end,
-        },
-      })
-    end,
+    lazy = true,
   },
   {
     'folke/neodev.nvim',
@@ -50,14 +41,15 @@ return {
   {
     'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lsp = require('lsp-zero')
-
-      lsp.skip_server_setup({ 'clangd', 'lua_ls' })
-
+      local utils = require('utils')
       lsp.on_attach(function(_, bufnr)
         require('keys').lsp_keys(bufnr)
       end)
+
+      lsp.skip_server_setup({ 'clangd', 'lua_ls' })
 
       lsp.format_mapping('gq', {
         format_opts = {
@@ -71,8 +63,29 @@ return {
 
       lsp.setup()
 
-      local null_ls = require('null-ls')
+      require('clangd_extensions').setup({
+        server = {
+          on_attach = function(_, bufnr)
+            require('keys').lsp_keys(bufnr)
+          end,
+          cmd = {
+            'clangd',
+            '--all-scopes-completion',
+            '--suggest-missing-includes',
+            '--header-insertion-decorators',
+            '--background-index',
+            '--pch-storage=disk',
+            '--cross-file-rename',
+            '--log=info',
+            '--completion-style=detailed',
+            '--enable-config',
+            '--clang-tidy',
+            '--offset-encoding=utf-16',
+          },
+        },
+      })
 
+      local null_ls = require('null-ls')
       null_ls.setup({
         sources = {
           null_ls.builtins.formatting.stylua,
@@ -83,7 +96,6 @@ return {
     dependencies = {
       { 'williamboman/mason.nvim' },
       { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/nvim-cmp' },
     },
   },
 }
