@@ -12,6 +12,7 @@ local M = {
     { 'onsails/lspkind.nvim' },
   },
 }
+
 function M.config()
   require('lsp-zero.cmp').extend()
   local cmp = require('cmp')
@@ -71,6 +72,20 @@ function M.config()
     sources = {
       { name = 'buffer' },
     },
+  })
+  -- `:` cmdline setup.
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' },
+    }, {
+      {
+        name = 'cmdline',
+        option = {
+          ignore_cmds = { 'Man', '!' },
+        },
+      },
+    }),
   })
 end
 
