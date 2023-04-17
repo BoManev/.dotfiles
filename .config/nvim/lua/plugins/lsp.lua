@@ -33,6 +33,9 @@ return {
             completion = {
               callSnippet = 'Replace',
             },
+            runtime = {
+              version = 'LuaJIT',
+            },
           },
         },
       })
