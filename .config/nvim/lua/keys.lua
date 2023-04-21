@@ -46,6 +46,8 @@ end
 M.generic_keys = function()
   local wk = require('which-key')
   local bind = vim.keymap.set
+  local utils = require('utils')
+
   bind('n', '[t', ':tprevious<CR>')
 
   -- previous tab
@@ -66,7 +68,7 @@ M.generic_keys = function()
   -- toggle spell
   bind('n', '<leader>ss', ':lua require("utils").toggle_opt("spell", "o", true, false)()<CR>')
 
-  -- toggle line column 
+  -- toggle line column
   bind('n', '<leader>sc', ':lua require("utils").toggle_opt("colorcolumn", "wo", "81", "0")()<CR>')
 
   -- open file explorer
@@ -85,24 +87,49 @@ M.generic_keys = function()
   bind('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
   bind('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+  -- clear leader
+  bind('n', '<space>', '<nop>')
+  bind('v', '<space>', '<nop>')
+
+  -- don't copy emptry lines
+  bind('n', 'dd', utils.smart_dd, { expr = true, silent = true })
+
+  -- smart indent on insert
+  bind('x', 'i', utils.smart_insert, { expr = true, silent = true })
+
+  -- no exit on visual shift
+  bind('v', '<', '<gv')
+  bind('v', '>', '>gv')
+
+  -- open file's directory
+  bind(
+    'n',
+    '-',
+    [[expand('%') == '' ? ':e ' . getcwd() . '<cr>' : ':e %:h<cr>']],
+    { expr = true, silent = true }
+  )
+
+  -- open url at cursor
+  bind('n', 'gx', utils.open_url, { expr = true, silent = true })
+
   wk.register({
     ['<leader>s'] = {
       name = '[S]witch',
       ['s'] = '[S]pell',
-      ['c'] = '[c]olumn'
+      ['c'] = '[c]olumn',
     },
     ['<leader>b'] = {
       name = '[B]uffer',
       ['q'] = '[q]uit',
-      ['l'] = '[l]ast'
+      ['l'] = '[l]ast',
     },
     ['['] = {
       ['b'] = 'prev [b]uf',
-      ['t'] = 'prev [t]ap'
+      ['t'] = 'prev [t]ap',
     },
     [']'] = {
       ['b'] = 'next [b]uf',
-      ['t'] = 'next [t]ap'
+      ['t'] = 'next [t]ap',
     },
   })
 end

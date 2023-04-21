@@ -18,6 +18,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 
+-- highlight matching paren
 vim.opt.showmatch = true
 
 vim.opt.mouse = 'v'
@@ -37,6 +38,15 @@ vim.opt.laststatus = 3
 
 vim.opt.list = true
 vim.opt.listchars = 'tab:→ ,eol:↵,trail:·,extends:↷,precedes:↶'
+
+vim.opt.showbreak = '↳ '
+vim.opt.fillchars = {
+  eob = ' ', -- Suppress ~ at EndOfBuffer
+  fold = ' ', -- Hide trailing folding characters
+  diff = '╱',
+  foldopen = '',
+  foldclose = '',
+}
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 vim.opt.wildmenu = true
@@ -81,3 +91,25 @@ if os.getenv('CONDA_PREFIX') ~= nil and os.getenv('CONDA_PREFIX') ~= '' then
 else
   vim.g.loaded_python3_provider = 0
 end
+
+vim.filetype.add({
+  extension = {
+    png = 'image',
+    jpg = 'image',
+    jpeg = 'image',
+    gif = 'image',
+    es6 = 'javascript',
+    mts = 'typescript',
+    cts = 'typescript',
+  },
+  filename = {
+    ['.eslintrc'] = 'json',
+    ['.prettierrc'] = 'json',
+    ['.babelrc'] = 'json',
+    ['.stylelintrc'] = 'json',
+  },
+  pattern = {
+    ['.*config/git/config'] = 'gitconfig',
+    ['.env.*'] = 'sh',
+  },
+})
