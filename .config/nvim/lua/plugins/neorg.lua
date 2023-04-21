@@ -12,7 +12,7 @@ local M = {
       '<Leader>wc',
       function()
         if vim.bo.filetype == 'norg' then
-          require('neorg').modules.get_module('core.norg.concealer').toggle_concealer()
+          require('neorg').modules.get_module('core.concealer').toggle_concealer()
         end
       end,
     },
@@ -33,12 +33,12 @@ function M.config()
   require('neorg').setup({
     load = {
       ['core.defaults'] = {},
-      ['core.norg.concealer'] = {
+      ['core.concealer'] = {
         config = {
           icon_preset = 'diamond',
         },
       },
-      ['core.norg.dirman'] = {
+      ['core.dirman'] = {
         config = {
           workspaces = {
             vault = '~/bohq/vault',
