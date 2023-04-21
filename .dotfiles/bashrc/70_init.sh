@@ -13,3 +13,5 @@ export FZF_ATL_C_COMMAND="fd --type d . --color=never --hidden"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 source /home/bo/.dotfiles/scripts/lazy_conda.sh
 source /home/bo/.dotfiles/scripts/lazy_node.sh
+
+eval "$(pyenv init -)"

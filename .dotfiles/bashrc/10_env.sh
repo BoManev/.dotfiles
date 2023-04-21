@@ -23,6 +23,9 @@ PATH=$GOPATH/bin:$PATH
 
 export NVM_DIR=$HOME/tools/nvm
 
+export PYENV_ROOT="$HOME/.pyenv"
+PATH="$PYENV_ROOT/bin:$PATH"
+
 export MANPAGER="nvim +Man!"
 export FZF_DEFAULT_COMMAND='rg --files'
 export PLUGINDIR=$XDG_CONFIG_HOME/shplugins
