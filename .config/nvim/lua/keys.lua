@@ -112,6 +112,9 @@ M.generic_keys = function()
   -- open url at cursor
   bind('n', 'gx', utils.open_url, { expr = true, silent = true })
 
+  -- get file info 
+  bind('n', '<leader>i', utils.file_info)
+
   wk.register({
     ['<leader>s'] = {
       name = '[S]witch',
@@ -130,6 +133,9 @@ M.generic_keys = function()
     [']'] = {
       ['b'] = 'next [b]uf',
       ['t'] = 'next [t]ap',
+    },
+    ['<leader>'] = {
+      ['i'] = '[i]nfo',
     },
   })
 end

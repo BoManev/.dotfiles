@@ -85,12 +85,12 @@ end
 vim.env.PATH = '/home/bo/tools/nvm/versions/node/v18.15.0/bin/:' .. vim.env.PATH
 --vim.g.node_host_prog = '/home/bo/tools/nvm/versions/node/v18.15.0/bin/nvim-node-host'
 --vim.g.loaded_node_provider = 1
-if os.getenv('CONDA_PREFIX') ~= nil and os.getenv('CONDA_PREFIX') ~= '' then
-  vim.g.python3_host_prog = vim.env.CONDA_PREFIX .. '/bin/python3'
-  vim.g.loaded_python3_provider = 1
-else
-  vim.g.loaded_python3_provider = 0
-end
+--if os.getenv('CONDA_PREFIX') ~= nil and os.getenv('CONDA_PREFIX') ~= '' then
+--  vim.g.python3_host_prog = vim.env.CONDA_PREFIX .. '/bin/python3'
+--  vim.g.loaded_python3_provider = 1
+--else
+--  vim.g.loaded_python3_provider = 0
+--end
 
 vim.filetype.add({
   extension = {
