@@ -14,7 +14,7 @@ scrolling:
 
 font:
   normal:
-    family: Comic Code Ligatures  
+    family: PT Mono
     style: Regular
 
   bold:

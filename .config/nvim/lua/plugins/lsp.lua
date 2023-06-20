@@ -6,22 +6,14 @@ return {
     config = function()
       require('mason').setup()
       require('mason-lspconfig').setup()
-      require('mason-null-ls').setup({
-        ensure_installed = nil,
-        automatic_installation = false,
-        handlers = {},
-      })
     end,
     dependencies = {
       { 'williamboman/mason-lspconfig.nvim' },
-      { 'jose-elias-alvarez/null-ls.nvim' },
-      { 'jay-babu/mason-null-ls.nvim' },
     },
   },
-  {
-    'p00f/clangd_extensions.nvim',
-    lazy = true,
-  },
+  { 'jay-babu/mason-null-ls.nvim' },
+  { 'p00f/clangd_extensions.nvim' },
+  { 'jose-elias-alvarez/null-ls.nvim' },
   {
     'folke/neodev.nvim',
     ft = { 'lua' },
@@ -52,6 +44,12 @@ return {
         require('keys').lsp_keys(bufnr)
       end)
 
+      lsp.set_server_config({
+        on_init = function(client)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
+      })
+
       lsp.skip_server_setup({ 'clangd', 'lua_ls' })
 
       lsp.format_mapping('gq', {
@@ -60,7 +58,7 @@ return {
           timeout_ms = 10000,
         },
         servers = {
-          ['null-ls'] = { 'lua', 'cpp', 'c' },
+          ['null-ls'] = { 'lua', 'cpp', 'c', 'rust' },
         },
       })
 
@@ -93,7 +91,13 @@ return {
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.clang_format,
+          null_ls.builtins.formatting.rustfmt,
         },
+      })
+      require('mason-null-ls').setup({
+        ensure_installed = nil,
+        automatic_installation = false,
+        handlers = {},
       })
     end,
     dependencies = {

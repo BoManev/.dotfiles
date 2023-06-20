@@ -59,8 +59,6 @@ for_window [class=".*"] border pixel 0
 exec --no-startup-id nm-applet
 exec --no-startup-id flameshot
 exec --no-startup-id 1password --silent
-exec --no-startup-id blueman-applet
-#exec --no-startup-id dropbox start
 
 # xprop
 for_window [class="Blueman-manager"] floating enable
@@ -70,8 +68,6 @@ for_window [class="Alacritty" workspace=$ws1] resize set 33 ppt
 for_window [class="xpad"] floating enable 
 for_window [class="1Password"] floating enable resize set 100 100
 for_window [title="Picture-in-Picture"] sticky enable
-for_window [title="Library"] floating enable resize set 600 900
-
 set $i3lockwall sh ~/.dotfiles/scripts/lock-screen.sh
 
 bindsym $mod+b exec --no-startup-id blueberry
@@ -83,6 +79,8 @@ bindsym $mod+v split v
 bindsym $mod+w layout tabbed
 bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
+
+bindsym $mod+n floating toggle exec --no-startup-id alacritty -e nvim
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
@@ -96,6 +94,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+d exec --no-startup-id j4-dmenu --dmenu 'dmenu -b -fn "System San Francisco-12"'
 bindsym $mod+Shift+s exec --no-startup-id $i3lockwall
 bindsym $mod+Return exec ~/tools/sources/alacritty/target/release/alacritty --config-file ~/.dotfiles/alacritty.yml
+bindsym $mod+Shift+Return floating toggle exec ~/tools/sources/alacritty/target/release/alacritty --config-file ~/.dotfiles/alacritty.yml
 
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- 
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle

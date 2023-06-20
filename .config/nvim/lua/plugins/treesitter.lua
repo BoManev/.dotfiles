@@ -14,7 +14,6 @@ return {
           'regex',
           'vimdoc',
           'vim',
-          'help',
           'query',
         },
         highlight = {

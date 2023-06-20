@@ -48,6 +48,7 @@ function M.config()
       },
       ['core.export'] = {},
       ['core.export.markdown'] = {},
+      ['external.norgberg'] = {},
     },
   })
 end

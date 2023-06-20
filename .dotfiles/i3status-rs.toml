@@ -38,8 +38,7 @@ block = "sound"
 
 [[block]]
 block = "battery"
-interval = 30
-format = " $percentage ($time)$icon "
+format = " $icon $percentage "
 
 [[block]]
 block = "time"
