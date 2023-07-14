@@ -57,6 +57,8 @@ vim.opt.splitbelow = true
 vim.opt.confirm = true
 vim.opt.iskeyword:append('-')
 
+vim.opt.shell = "/bin/bash"
+
 -- providers and builtins
 local builtins = {
   'tar',
