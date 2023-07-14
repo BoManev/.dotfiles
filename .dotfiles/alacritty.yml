@@ -47,6 +47,10 @@ cursor:
 mouse_bindings:
   - { mouse: Right, action: PasteSelection }
 key_bindings:
+    # delete one word to the left
+  - {key: Back, mods: Control, chars: "\x17"}
+    # delete full line
+  - {key: Back, mods: Control|Shift, chars: "\x15"}
   - { key: X, mods: Control|Shift, action: ToggleViMode }
   # Search
   - { key: N, mode: Vi, action: SearchNext }
