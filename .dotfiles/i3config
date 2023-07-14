@@ -37,9 +37,9 @@ set $ws9 "9:IX"
 set $ws10 "10:X"
 
 bar {
-    font pango: System San Francisco 12, FontAwesome 12
+    font pango:SFNS Display 10
     strip_workspace_numbers yes
-    position top
+    position bottom
     status_command ~/.cargo/bin/i3status-rs ~/.dotfiles/i3status-rs.toml
     colors {
         separator $background
@@ -59,6 +59,7 @@ for_window [class=".*"] border pixel 0
 exec --no-startup-id nm-applet
 exec --no-startup-id flameshot
 exec --no-startup-id 1password --silent
+exec xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
 
 # xprop
 for_window [class="Blueman-manager"] floating enable
