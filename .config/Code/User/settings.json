@@ -11,30 +11,47 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+
   "editor.quickSuggestions": {
     "strings": true
   },
 
-  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.dotfiles/init.lua",
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  },
-  "vscode-neovim.highlightGroups.highlights": {
+  // "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.dotfiles/init.lua",
+  // "extensions.experimental.affinity": {
+  //   "asvetliakov.vscode-neovim": 1
+  // },
+  // "vscode-neovim.highlightGroups.highlights": {
+  //   "Directory": "vim",
+  //   "IncSearch": {
+  //     "backgroundColor": "theme.editor.findMatchBackground",
+  //     "borderColor": "theme.editor.findMatchBorder"
+  //   },
+  //   "Search": {
+  //     "backgroundColor": "theme.editor.findMatchHighlightBackground",
+  //     "borderColor": "theme.editor.findMatchHighlightBorder"
+  //   },
+  //   "Visual": {
+  //     "backgroundColor": "theme.editor.selectionBackground"
+  //   },
+  //   "Conceal": "vim",
+  //   "Substitute": "vim"
+  // },
 
-    "Directory": "vim",
-    "IncSearch": {
-      "backgroundColor": "theme.editor.findMatchBackground",
-      "borderColor": "theme.editor.findMatchBorder"
-    },
-    "Search": {
-      "backgroundColor": "theme.editor.findMatchHighlightBackground",
-      "borderColor": "theme.editor.findMatchHighlightBorder"
-    },
-    "Visual": {
-      "backgroundColor": "theme.editor.selectionBackground"
-    },
-    "Conceal": "vim",
-    "Substitute": "vim"
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "window.zoomLevel": -1
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "workbench.colorTheme": "Kanagawa"
 }
