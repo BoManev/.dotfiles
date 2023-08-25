@@ -20,7 +20,7 @@ set PATH $PATH $HOME/.local/bin
 set PATH $PATH $HOME/tools/bin
 
 set PATH $PATH $HOME/.cargo/bin
-set PATH $PATH $HOME/.dotfiles/bin
+set PATH $PATH $HOME/projects/.dotfiles/bin
 
 set -Ux GOROOT $HOME/tools/sources/go
 set -Ux GOPATH $HOME/tools/go
@@ -43,8 +43,6 @@ function multicd
     echo z (string repeat -n (math (string length -- $argv[1]) - 1) ../)
 end
 
-abbr -a lds 'lazygit --git-dir=$HOME/.dotrepo/ --work-tree=$HOME' #[l] [d]otfile[s]
-abbr -a gds 'git --git-dir=$HOME/.dotrepo/ --work-tree=$HOME' # [g]it [d]otfile[s]
 abbr -a benchnvim 'hyperfine "nvim --headless +qa" --warmup 5'
 # install terminfo for alacritty when in ssh
 abbr -a aterminfo 'wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info && tic -xe alacritty,alacritty-direct alacritty.info && rm alacritty.info'
