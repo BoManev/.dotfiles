@@ -19,6 +19,7 @@ exec --no-startup-id flameshot
 exec --no-startup-id 1password --silent
 exec xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
 
+exec --no-startup-id brightnessctl set 40%
 exec --no-startup-id xset dpms 0 0 0
 exec --no-startup-id xset s 120 60
 exec --no-startup-id xss-lock -l -- $DOTFILES/scripts/i3exitset_from_resource $foreground  foreground  #dcd7ba
@@ -75,7 +76,32 @@ bindsym $mod+backslash mode "$mode_system"
 
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- 
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+  bindsym $mod+h focus left
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+  
+
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+set $mode_i3 (c) configure (r) reload
+mode "$mode_i3" {
+    bindsym $mod+Shift+c reload, mode "default"
+    bindsym $mod+Shift+r restart, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+backslash mode "$mode_system"
+
+set $mode_layout (d) default (f) fullscreen (t) tabs (s) stack
+mode "$mode_layout" {
+    bindsym t layout tabbed, mode "default"
+    bindsym f fullscreen toggle, mode "default"
+    bindsym s layout stacking, mode "default"
+    bindsym d layout toggle split, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+backslash mode "$mode_system"bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
@@ -141,17 +167,11 @@ bindsym $mod+d exec dmenu_run -b -fn "System San Francisco-12"
 
 bindsym $mod+Shift+v split  h
 bindsym $mod+v split v
-bindsym $mod+w layout tabbed
-bindsym $mod+f fullscreen toggle
-bindsym $mod+e layout toggle split
 
 bindsym $mod+n floating toggle exec --no-startup-id alacritty -e nvim
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
-
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+q kill
 
