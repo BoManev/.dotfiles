@@ -53,5 +53,8 @@
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "workbench.colorTheme": "Kanagawa"
+  "workbench.colorTheme": "Kanagawa",
+  "editor.minimap.enabled": false,
+  "rust-analyzer.lens.implementations.enable": false,
+  "github.copilot.editor.enableAutoCompletions": false
 }

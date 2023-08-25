@@ -1,0 +1,160 @@
+set $mod Mod4
+floating_modifier $mod
+
+set $HOME /home/bo
+set $DOTSCRIPT /home/bo/projects/.dotfiles/scripts
+
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V"
+set $ws6 "6:VI"
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:IX"
+set $ws10 "10:X"
+exec --no-startup-id nm-applet
+exec --no-startup-id flameshot
+exec --no-startup-id 1password --silent
+exec xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
+
+exec --no-startup-id xset dpms 0 0 0
+exec --no-startup-id xset s 120 60
+exec --no-startup-id xss-lock -l -- $DOTFILES/scripts/i3exitset_from_resource $foreground  foreground  #dcd7ba
+set_from_resource $background  background  #1f1f28
+set_from_resource $cursorColor cursorColor #dcd7ba
+set_from_resource $black      color0  #090618
+set_from_resource $darkblack  color8  #727169
+set_from_resource $red        color1  #c34043
+set_from_resource $darkred    color9  #e82424
+set_from_resource $green      color2  #76946a
+set_from_resource $darkgreen  color10 #98bb6c
+set_from_resource $yellow     color3  #c0a36e
+set_from_resource $darkyellow color11 #e6c384
+set_from_resource $blue       color4  #7e9cd8
+set_from_resource $darkblue   color12 #7fb4ca
+set_from_resource $magenta    color5  #957fb8
+set_from_resource $darkmagenta color13 #938aa9
+set_from_resource $cyan       color6  #6a9589
+set_from_resource $darkcyan   color14 #7aa89f
+set_from_resource $white      color7  #c8c093
+set_from_resource $darkwhite  color15 #dcd7ba
+
+# lxappearance for sys fonts
+font pango: System San Francisco 10 
+for_window [class=".*"] border pixel 0
+bar {
+    font pango:SFNS Display 10
+    strip_workspace_numbers yes
+    position bottom
+    status_command ~/.cargo/bin/i3status-rs $HOME/projects/.dotfiles/i3status-rs.toml
+    colors {
+        separator $background
+        background $background
+        statusline $darkwhite
+        # border / bg / text
+        focused_workspace  $darkgreen $background $foreground
+        inactive_workspace $darkblack $background $foreground
+        urgent_workspace   $red  $background $foregroun
+    }
+}
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id xset s activate, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id xset s activate && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id xset s activate && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+backslash mode "$mode_system"
+
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- 
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+  bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+set $mode_move Move window..
+mode "$mode_move" {
+    bindsym 1 move container to workspace $ws1
+    bindsym 2 move container to workspace $ws2
+    bindsym 3 move container to workspace $ws3
+    bindsym 4 move container to workspace $ws4
+    bindsym 5 move container to workspace $ws5
+    bindsym 6 move container to workspace $ws6
+    bindsym 7 move container to workspace $ws7
+    bindsym 8 move container to workspace $ws8
+    bindsym 9 move container to workspace $ws9
+    bindsym 0 move container to workspace $ws10
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+m mode "$mode_move"
+
+set $mode_resize Resize window..
+mode "$mode_resize" {
+    bindsym h resize shrink width 1 px or 1 ppt
+    bindsym j resize shrink height 1 px or 1 ppt
+    bindsym k resize grow height 1 px or 1 ppt
+    bindsym l resize grow width 1 px or 1 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "$mode_resize"
+gaps inner 5 
+gaps outer 0
+smart_gaps on
+# xprop
+for_window [class="Blueman-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable resize set 600 900
+for_window [class="Gnome-calculator"] floating enable
+for_window [class="Alacritty" workspace=$ws1] resize set 33 ppt
+for_window [class="xpad"] floating enable 
+for_window [class="1Password"] floating enable resize set 100 100
+for_window [title="Picture-in-Picture"] sticky enablebindsym $mod+b exec --no-startup-id blueberry
+bindsym $mod+c exec --no-startup-id pavucontrol
+bindsym $mod+d exec dmenu_run -b -fn "System San Francisco-12"
+
+bindsym $mod+Shift+v split  h
+bindsym $mod+v split v
+bindsym $mod+w layout tabbed
+bindsym $mod+f fullscreen toggle
+bindsym $mod+e layout toggle split
+
+bindsym $mod+n floating toggle exec --no-startup-id alacritty -e nvim
+
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+Shift+d exec --no-startup-id j4-dmenu --dmenu 'dmenu -b -fn "System San Francisco-12"'
+bindsym $mod+Return exec $HOME/tools/sources/alacritty/target/release/alacritty --config-file $HOME/projects/.dotfiles/alacritty.yml
+bindsym $mod+Shift+Return floating toggle exec ~/tools/sources/alacritty/target/release/alacritty --config-file ~/.dotfiles/alacritty.yml

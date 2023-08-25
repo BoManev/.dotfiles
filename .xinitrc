@@ -18,6 +18,9 @@ fi
 
 xmodmap ~/.Xmodmap
 
-xss-lock --transfer-sleep-lock -- i3lock --nofork &
+xset dpms 0 0 0
+xset s 120 30
+xss-lock --transfer-sleep-lock -- $HOME/.dotfiles/scripts/i3exit --nofork &
+
 exec i3 -c $HOME/.dotfiles/i3config
 
