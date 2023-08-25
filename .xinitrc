@@ -13,14 +13,9 @@ if hash dunst > /dev/null 2>&1 ; then
 fi
 
 if hash picom > /dev/null 2>&1 ; then
-    picom -b --config $HOME/.dotfiles/picom.conf &
+    picom -b --config $HOME/projects/.dotfiles/picom.conf &
 fi
 
 xmodmap ~/.Xmodmap
 
-xset dpms 0 0 0
-xset s 120 30
-xss-lock --transfer-sleep-lock -- $HOME/.dotfiles/scripts/i3exit --nofork &
-
-exec i3 -c $HOME/.dotfiles/i3config
-
+exec i3 -c $HOME/projects/.dotfiles/i3config
