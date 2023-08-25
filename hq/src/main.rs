@@ -15,7 +15,29 @@ fn main() -> io::Result<()> {
 
     let source_file = "/home/bo/projects/.dotfiles/.XCompose";
     let target_path = "/home/bo";
+    link_with_bak(source_file, target_path)?;
 
+    let source_file = "/home/bo/projects/.dotfiles/.xinitrc";
+    link_with_bak(source_file, target_path)?;
+
+    let source_file = "/home/bo/projects/.dotfiles/.Xmodmap";
+    link_with_bak(source_file, target_path)?;
+
+    let source_file = "/home/bo/projects/.dotfiles/.Xresources";
+    link_with_bak(source_file, target_path)?;
+
+    let source_file = "/home/bo/projects/.dotfiles/.bashrc";
+    link_with_bak(source_file, target_path)?;
+
+    let source_file = "/home/bo/projects/.dotfiles/.gitconfig";
+    link_with_bak(source_file, target_path)?;
+
+    let source_file = "/home/bo/projects/.dotfiles/settings.json";
+    let target_path = "/home/bo/.config/Code/User/";
+    link_with_bak(source_file, target_path)?;
+
+    let source_file = "/home/bo/projects/.dotfiles/config.fish";
+    let target_path = "/home/bo/.config/fish/";
     link_with_bak(source_file, target_path)?;
 
     Ok(())
