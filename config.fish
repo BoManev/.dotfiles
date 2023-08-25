@@ -57,5 +57,7 @@ abbr -a mv 'mv -iv'
 abbr -a rm 'rm -v'
 abbr -a c 'clear -x' # [c]lean
 abbr -a f 'clear' # [f]flush
+abbr -a dots '~/projects/.dotfiles/' 
+
 
 
