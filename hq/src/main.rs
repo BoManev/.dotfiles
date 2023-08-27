@@ -14,7 +14,7 @@ fn main() -> io::Result<()> {
     concat_builder(input_dir_path, output_file_path)?;
 
     let source_file = "/home/bo/projects/.dotfiles/.XCompose";
-    let target_path = "/home/bo";
+    let target_path = "/home/bo/";
     link_with_bak(source_file, target_path)?;
 
     let source_file = "/home/bo/projects/.dotfiles/.xinitrc";
@@ -39,6 +39,10 @@ fn main() -> io::Result<()> {
     let source_file = "/home/bo/projects/.dotfiles/config.fish";
     let target_path = "/home/bo/.config/fish/";
     link_with_bak(source_file, target_path)?;
+
+   let source_file = "/home/bo/projects/.dotfiles/nvim";
+   let target_path = "/home/bo/.config/nvim";
+   link_with_bak(source_file, target_path)?;
 
     Ok(())
 }
