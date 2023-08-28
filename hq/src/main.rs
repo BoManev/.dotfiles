@@ -43,9 +43,9 @@ fn main() -> io::Result<()> {
     let target_path = "/home/bo/.config/fish/";
     file_link(source_file, target_path)?;
 
-    //    let source_file = "/home/bo/projects/.dotfiles/nvim";
-    //    let target_path = "/home/bo/.config/nvim";
-    //     file_link(source_file, target_path)?;
+    let source_file = "/home/bo/projects/.dotfiles/nvim";
+    let target_path = "/home/bo/.config/nvim";
+    dir_link(source_file, target_path)?;
 
     Ok(())
 }

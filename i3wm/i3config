@@ -2,7 +2,7 @@ set $mod Mod4
 floating_modifier $mod
 
 set $HOME /home/bo
-set $DOTSCRIPT /home/bo/projects/.dotfiles/scripts
+set $DOTFILES /home/bo/projects/.dotfiles
 
 set $ws1 "1:I"
 set $ws2 "2:II"
@@ -81,15 +81,15 @@ bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
-set $mode_i3 (c) configure (r) reload
+set $mode_i3 (c) configure (r) restart
 mode "$mode_i3" {
-    bindsym $mod+Shift+c reload, mode "default"
-    bindsym $mod+Shift+r restart, mode "default"
+    bindsym c reload, mode "default"
+    bindsym r restart, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+backslash mode "$mode_system"
+bindsym $mod+Shift+backslash mode "$mode_i3"
 
 set $mode_layout (d) default (f) fullscreen (t) tabs (s) stack
 mode "$mode_layout" {
@@ -101,7 +101,9 @@ mode "$mode_layout" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+backslash mode "$mode_system"bindsym $mod+h focus left
+bindsym $mod+equal mode "$mode_layout"
+
+bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
@@ -124,16 +126,16 @@ bindsym $mod+0 workspace $ws10
 
 set $mode_move Move window..
 mode "$mode_move" {
-    bindsym 1 move container to workspace $ws1
-    bindsym 2 move container to workspace $ws2
-    bindsym 3 move container to workspace $ws3
-    bindsym 4 move container to workspace $ws4
-    bindsym 5 move container to workspace $ws5
-    bindsym 6 move container to workspace $ws6
-    bindsym 7 move container to workspace $ws7
-    bindsym 8 move container to workspace $ws8
-    bindsym 9 move container to workspace $ws9
-    bindsym 0 move container to workspace $ws10
+    bindsym 1 move container to workspace $ws1, mode "default"
+    bindsym 2 move container to workspace $ws2, mode "default"
+    bindsym 3 move container to workspace $ws3, mode "default"
+    bindsym 4 move container to workspace $ws4, mode "default"
+    bindsym 5 move container to workspace $ws5, mode "default"
+    bindsym 6 move container to workspace $ws6, mode "default"
+    bindsym 7 move container to workspace $ws7, mode "default"
+    bindsym 8 move container to workspace $ws8, mode "default"
+    bindsym 9 move container to workspace $ws9, mode "default"
+    bindsym 0 move container to workspace $ws10, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -176,5 +178,4 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+d exec --no-startup-id j4-dmenu --dmenu 'dmenu -b -fn "System San Francisco-12"'
-bindsym $mod+Return exec $HOME/tools/sources/alacritty/target/release/alacritty --config-file $HOME/projects/.dotfiles/alacritty.yml
-bindsym $mod+Shift+Return floating toggle exec ~/tools/sources/alacritty/target/release/alacritty --config-file ~/.dotfiles/alacritty.yml
+bindsym $mod+Return exec $HOME/tools/sources/alacritty/target/release/alacritty --config-file $DOTFILES/alacritty.yml

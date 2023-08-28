@@ -5,8 +5,8 @@ env:
 window:
   draw_bold_text_with_bright_colors: true
   padding:
-    x: 0
-    y: 0
+    x: 5
+    y: 5
 
 scrolling:
   history: 10000

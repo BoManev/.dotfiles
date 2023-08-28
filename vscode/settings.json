@@ -56,5 +56,7 @@
   "workbench.colorTheme": "Kanagawa",
   "editor.minimap.enabled": false,
   "rust-analyzer.lens.implementations.enable": false,
-  "github.copilot.editor.enableAutoCompletions": false
+  "github.copilot.editor.enableAutoCompletions": false,
+  "search.smartCase": true,
+  "search.mode": "reuseEditor"
 }

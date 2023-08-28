@@ -13,9 +13,9 @@ if hash dunst > /dev/null 2>&1 ; then
 fi
 
 if hash picom > /dev/null 2>&1 ; then
-    picom -b --config $HOME/projects/.dotfiles/picom.conf &
+    picom -b --config $HOME/projects/.dotfiles/i3wm/picom.conf &
 fi
 
 xmodmap ~/.Xmodmap
 
-exec i3 -c $HOME/projects/.dotfiles/i3config
+exec i3 -c $HOME/projects/.dotfiles/i3wm/i3config
