@@ -14,6 +14,7 @@ set $ws7 "7:VII"
 set $ws8 "8:VIII"
 set $ws9 "9:IX"
 set $ws10 "10:X"
+
 exec --no-startup-id nm-applet
 exec --no-startup-id flameshot
 exec --no-startup-id 1password --silent
@@ -22,7 +23,8 @@ exec xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled"
 exec --no-startup-id brightnessctl set 40%
 exec --no-startup-id xset dpms 0 0 0
 exec --no-startup-id xset s 120 60
-exec --no-startup-id xss-lock -l -- $DOTFILES/scripts/i3exitset_from_resource $foreground  foreground  #dcd7ba
+exec --no-startup-id xss-lock -l -- $DOTFILES/scripts/i3exit
+set_from_resource $foreground  foreground  #dcd7ba
 set_from_resource $background  background  #1f1f28
 set_from_resource $cursorColor cursorColor #dcd7ba
 set_from_resource $black      color0  #090618
@@ -45,11 +47,12 @@ set_from_resource $darkwhite  color15 #dcd7ba
 # lxappearance for sys fonts
 font pango: System San Francisco 10 
 for_window [class=".*"] border pixel 0
+
 bar {
     font pango:SFNS Display 10
     strip_workspace_numbers yes
     position bottom
-    status_command ~/.cargo/bin/i3status-rs $HOME/projects/.dotfiles/i3status-rs.toml
+    status_command ~/.cargo/bin/i3status-rs ~/projects/.dotfiles/i3wm/i3status-rs.toml
     colors {
         separator $background
         background $background
@@ -153,9 +156,11 @@ mode "$mode_resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "$mode_resize"
+
 gaps inner 5 
 gaps outer 0
 smart_gaps on
+
 # xprop
 for_window [class="Blueman-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable resize set 600 900
@@ -163,7 +168,8 @@ for_window [class="Gnome-calculator"] floating enable
 for_window [class="Alacritty" workspace=$ws1] resize set 33 ppt
 for_window [class="xpad"] floating enable 
 for_window [class="1Password"] floating enable resize set 100 100
-for_window [title="Picture-in-Picture"] sticky enablebindsym $mod+b exec --no-startup-id blueberry
+for_window [title="Picture-in-Picture"] sticky enable
+bindsym $mod+b exec --no-startup-id blueberry
 bindsym $mod+c exec --no-startup-id pavucontrol
 bindsym $mod+d exec dmenu_run -b -fn "System San Francisco-12"
 

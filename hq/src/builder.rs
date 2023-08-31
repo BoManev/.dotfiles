@@ -1,5 +1,5 @@
 use std::fs::{self, File};
-use std::io;
+use std::io::{self, Write};
 use std::path::{Path, PathBuf};
 
 pub fn concat_builder(dir_path: &Path, output_file: &Path) -> io::Result<()> {
@@ -12,6 +12,7 @@ pub fn concat_builder(dir_path: &Path, output_file: &Path) -> io::Result<()> {
     for file_path in files {
         let mut file = File::open(&file_path).expect("Failed to open target file for read");
         io::copy(&mut file, &mut output).expect("Failed to copy contents to output file");
+        output.write_all(b"\n").expect("Failed to write newline");
     }
 
     Ok(())
