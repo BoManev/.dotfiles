@@ -16,26 +16,14 @@
     "strings": true
   },
 
-  // "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.dotfiles/init.lua",
-  // "extensions.experimental.affinity": {
-  //   "asvetliakov.vscode-neovim": 1
-  // },
-  // "vscode-neovim.highlightGroups.highlights": {
-  //   "Directory": "vim",
-  //   "IncSearch": {
-  //     "backgroundColor": "theme.editor.findMatchBackground",
-  //     "borderColor": "theme.editor.findMatchBorder"
-  //   },
-  //   "Search": {
-  //     "backgroundColor": "theme.editor.findMatchHighlightBackground",
-  //     "borderColor": "theme.editor.findMatchHighlightBorder"
-  //   },
-  //   "Visual": {
-  //     "backgroundColor": "theme.editor.selectionBackground"
-  //   },
-  //   "Conceal": "vim",
-  //   "Substitute": "vim"
-  // },
+  "rust-analyzer.highlighting.strings": true,
+  "editor.tokenColorCustomizations": {
+    "[Kanagawa]": {
+      "comments": {
+        "foreground": "#7a8b54"
+      }
+    }
+  },
 
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -53,10 +41,12 @@
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "workbench.colorTheme": "Kanagawa",
   "editor.minimap.enabled": false,
   "rust-analyzer.lens.implementations.enable": false,
   "github.copilot.editor.enableAutoCompletions": false,
   "search.smartCase": true,
-  "search.mode": "reuseEditor"
+  "search.mode": "reuseEditor",
+  "workbench.colorTheme": "Kanagawa",
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+  "window.zoomLevel": -1
 }

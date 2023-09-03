@@ -140,5 +140,9 @@
         "key": "shift+alt+f12",
         "command": "-references-view.findReferences",
         "when": "editorHasReferenceProvider"
+    },
+    {
+        "key": "alt+t",
+        "command": "workbench.action.terminal.focus"
     }
 ]
