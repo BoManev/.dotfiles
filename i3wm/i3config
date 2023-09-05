@@ -21,7 +21,7 @@ exec --no-startup-id 1password --silent
 exec xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
 
 exec --no-startup-id brightnessctl set 40%
-exec --no-startup-id xset dpms 120 500 0
+exec --no-startup-id xset dpms 240 60 0
 exec --no-startup-id xss-lock -l -- $DOTFILES/scripts/i3exit
 exec --no-startup-id/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
@@ -66,9 +66,10 @@ bar {
 }
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $DOTFILES/scripts/i3exit, mode "default"
+    bindsym l exec --no-startup-id xset dpms force standby, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
     bindsym Return mode "default"
