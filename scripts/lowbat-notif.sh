@@ -3,7 +3,12 @@
 CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
 STATUS=$(cat /sys/class/power_supply/BAT0/status)
 
-[ "$STATUS" = "Discharging" ] && [ "$CAPACITY" -lt 20 ] && \
-/usr/bin/notify-send -u critical "Low Battery" "Capacity: ($CAPACITY%)\n" && \
+if [ "$STATUS" = "Discharging" ] && [ "$CAPACITY" -lt 20 ]; then
+    /usr/bin/notify-send -u critical "Low Battery" "Capacity: ($CAPACITY%)\n"
+fi
 
-#paplay ~/some_sound
+if [ "$STATUS" = "Discharging" ] && [ "$CAPACITY" -lt 10 ]; then
+    /usr/bin/notify-send -u critical "Low Battery: suspending..."
+    sleep 1
+    systemctl suspend
+fi
