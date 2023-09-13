@@ -48,5 +48,5 @@
   "search.mode": "reuseEditor",
   "workbench.colorTheme": "Kanagawa",
   "rust-analyzer.inlayHints.closingBraceHints.enable": false,
-  "window.zoomLevel": -1
+  "window.zoomLevel": -3
 }
