@@ -144,5 +144,15 @@
     {
         "key": "alt+t",
         "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "shift+alt+r",
+        "command": "workbench.action.debug.run",
+        "when": "debuggersAvailable && debugState != 'initializing'"
+    },
+    {
+        "key": "ctrl+f5",
+        "command": "-workbench.action.debug.run",
+        "when": "debuggersAvailable && debugState != 'initializing'"
     }
 ]

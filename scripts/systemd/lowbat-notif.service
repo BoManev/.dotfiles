@@ -1,0 +1,15 @@
+[Unit]
+Description=Dunst low battery notification service
+After=dunst.service
+
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/bo/projects/.dotfiles/scripts/lowbat-notif.sh
+Restart=always
+RestartSec=30
+Environment="DISPLAY=:0" "XAUTHORITY=/home/bo/.Xauthority"
+
+
+[Install]
+WantedBy=default.target

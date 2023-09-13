@@ -47,5 +47,11 @@ fn main() -> io::Result<()> {
     let target_path = "/home/bo/.config/nvim";
     dir_link(source_file, target_path)?;
 
+    //systemctl --user start battery-notification.service
+    //systemctl --user enable battery-notification.service
+    let source_file = "/home/bo/projects/.dotfiles/scripts/systemd/lowbat-notif.service";
+    let target_path = "/home/bo/.config/systemd/user";
+    file_link(source_file, target_path)?;
+
     Ok(())
 }
