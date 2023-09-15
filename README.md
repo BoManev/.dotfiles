@@ -6,5 +6,3 @@ cd hq
 cargo build
 cargo run
 ```
-### TODO
-- Add `dry-run` option
