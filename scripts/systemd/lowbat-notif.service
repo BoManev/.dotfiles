@@ -7,7 +7,7 @@ After=dunst.service
 Type=simple
 ExecStart=/bin/bash /home/bo/projects/.dotfiles/scripts/lowbat-notif.sh
 Restart=always
-RestartSec=30
+RestartSec=60
 Environment="DISPLAY=:0" "XAUTHORITY=/home/bo/.Xauthority"
 
 
