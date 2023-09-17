@@ -47,5 +47,6 @@
   "search.smartCase": true,
   "search.mode": "reuseEditor",
   "workbench.colorTheme": "Kanagawa",
-  "rust-analyzer.inlayHints.closingBraceHints.enable": false
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+  "window.zoomLevel": 1
 }
