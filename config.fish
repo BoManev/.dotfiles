@@ -59,5 +59,3 @@ abbr -a c 'clear -x' # [c]lean
 abbr -a f 'clear' # [f]flush
 abbr -a --position anywhere dots '~/projects/.dotfiles/' 
 
-
-

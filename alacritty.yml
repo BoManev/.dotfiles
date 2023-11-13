@@ -13,18 +13,18 @@ scrolling:
   multiplier: 3
 
 font:
+  size: 9.0
   normal:
-    family: PT Mono
-    style: Regular
+    family: Iosevka Term
+    style: Medium
 
   bold:
-    family: SauceCodePro Nerd Font Mono
+    family: Iosevka Term
     style: Bold
 
   italic:
-    family: SauceCodePro Nerd Font Mono
+    family: Iosevka Term
     style: Italic
-  size: 9.0
 
   offset:
     x: 0

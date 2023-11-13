@@ -46,7 +46,7 @@ set_from_resource $white      color7  #c8c093
 set_from_resource $darkwhite  color15 #dcd7ba
 
 # lxappearance for sys fonts
-font pango: System San Francisco 10 
+font pango: Iosevka 10 
 for_window [class=".*"] border pixel 0
 
 bar {
@@ -186,3 +186,5 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+d exec --no-startup-id j4-dmenu --dmenu 'dmenu -b -fn "System San Francisco-12"'
 bindsym $mod+Return exec $HOME/tools/sources/alacritty/target/release/alacritty --config-file $DOTFILES/alacritty.yml
+
+bindsym Print exec "flameshot gui"

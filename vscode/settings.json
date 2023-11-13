@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "LigaSauceCodePro Nerd Font",
+  "editor.fontFamily": "Iosevka",
   "editor.fontLigatures": true,
   "window.titleBarStyle": "custom",
 
@@ -16,7 +16,6 @@
     "strings": true
   },
 
-  "rust-analyzer.highlighting.strings": true,
   "editor.tokenColorCustomizations": {
     "[Kanagawa]": {
       "comments": {
@@ -48,5 +47,9 @@
   "search.mode": "reuseEditor",
   "workbench.colorTheme": "Kanagawa",
   "rust-analyzer.inlayHints.closingBraceHints.enable": false,
-  "window.zoomLevel": 1
+  "editor.inlayHints.enabled": "offUnlessPressed",
+
+  "[markdown]": {
+    "editor.wordWrap": "off",
+  }
 }
