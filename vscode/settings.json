@@ -51,5 +51,9 @@
 
   "[markdown]": {
     "editor.wordWrap": "off",
-  }
+  },
+  "liveshare.languages.allowGuestCommandControl": true,
+  "liveshare.autoShareServers": false,
+  "liveshare.openSharedServers": false,
+  "window.zoomLevel": 1
 }
