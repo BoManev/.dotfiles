@@ -1,0 +1,21 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~', '~/.config']
+
+- create:
+    - ~/.config/systemd/user
+
+- link:
+    ~/.config/fish: fish
+    ~/.config/nvim: nvim
+    ~/.config/atuin/config.toml: atuin.toml
+    ~/.XCompose: x11/.XCompose
+    ~/.Xmodmap: x11/.Xmodmap
+    ~/.config/systemd/user/after-start.service: systemd/after-start.service
+    ~/.gitconfig: gitconfig
+
+- shell:
+  - systemctl --user enable after-start.service && systemctl --user start after-start.service

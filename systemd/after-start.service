@@ -1,0 +1,10 @@
+[Unit]
+Description=Service to run commands on startup
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/bo/projects/.dotfiles/scripts/after-start.sh
+
+[Install]
+WantedBy=default.target

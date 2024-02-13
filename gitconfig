@@ -1,0 +1,9 @@
+[user]
+	email = bomanev@pm.me
+	name = Bo Manev
+[column]
+	ui = auto
+[branch]
+	sort = -comitterdate
+[rerere]
+	enabled = true

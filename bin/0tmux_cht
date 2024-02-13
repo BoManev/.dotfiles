@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+dir=$DOTFILES/configs/tmux_cht
+selected=`cat $dir/languages $dir/commands | fzf`
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+read -p "Enter Query: " query
+
+if grep -qs "$selected" $dir/languages; then
+    query=`echo $query | tr ' ' '+'`
+    command="curl cht.sh/$selected/$query | nvim +Man!"
+else
+    command="curl -s cht.sh/$selected~$query | nvim +Man!"
+fi
+
+if [[ -n $TMUX ]] && [[ -n $tmux_running ]]; then
+    tmux neww bash -c $command
+    exit 0
+fi
+
+eval "$command"
