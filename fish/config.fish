@@ -9,14 +9,6 @@ set -gx PDFVIEWER zotero
 set -gx PSVIEWER zotero
 set -gx MANPAGER "nvim +Man!"
 
-# set PATH /usr/local/sbin/
-set PATH $PATH /usr/local/bin/
-set PATH $PATH /usr/sbin/
-set PATH $PATH /usr/bin/
-set PATH $PATH /sbin
-set PATH $PATH /bin
-set PATH $PATH $HOME/.local/bin
-
 set -Ux TOOLS $HOME/tools
 set PATH $PATH $TOOLS/bin
 set PATH $PATH $TOOLS/neovim/bin
@@ -46,7 +38,7 @@ atuin init fish | source
 # <C+f> - accept suggestion
 # <A+f> - accept first suggested word
 
-# .. -> z ./.. 
+# .. -> z ./..
 # ... -> z ./../..
 function multicd
     echo z (string repeat -n (math (string length -- $argv[1]) - 1) ../)
@@ -66,4 +58,4 @@ abbr -a mv 'mv -iv'
 abbr -a rm 'rm -v'
 abbr -a c 'clear -x' # [c]lean
 abbr -a f 'clear' # [f]flush
-abbr -a --position anywhere dots '~/projects/.dotfiles/' 
+abbr -a --position anywhere dots '~/projects/.dotfiles/'
