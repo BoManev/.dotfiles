@@ -7,12 +7,22 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.nixvm = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./configuration.nix
-      ];
+    nixosConfigurations = {
+      nixvm = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./configuration.nix
+        ];
+      };
+      nixiso = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          ./configuration.nix
+        ];
+      };
     };
   };
 }

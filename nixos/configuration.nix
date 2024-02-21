@@ -1,8 +1,8 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  nixpkgs.config.allowUnfree = lib.mkForce true;
   # boot.postBootCommands = ''
   #   cp ${./configuration.nix} /etc/nixos/configuration.nix
   #   cp ${./flake.nix} /etc/nixos/flake.nix
