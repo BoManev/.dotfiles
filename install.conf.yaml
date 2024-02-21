@@ -16,6 +16,8 @@
     ~/.Xmodmap: x11/.Xmodmap
     ~/.config/systemd/user/after-start.service: systemd/after-start.service
     ~/.gitconfig: gitconfig
+    ~/.config/alacritty/alacritty.toml: alacritty.toml
+    ~/.config/tmux/tmux.conf: tmux.conf
 
 - shell:
   - systemctl --user enable after-start.service && systemctl --user start after-start.service

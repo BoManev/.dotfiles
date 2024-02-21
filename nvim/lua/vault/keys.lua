@@ -165,7 +165,7 @@ M.lsp = function(opts)
   vim.keymap.set("n", "<leader>lws", function() vim.lsp.buf.workspace_symbol() end, opts)
   vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.signature_help() end, opts)
   vim.keymap.set('n', '<leader>lt', function() vim.lsp.buf.type_definition() end, opts)
-  vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float({focusable = true }) end, opts)
   vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
   vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
 end
@@ -221,6 +221,9 @@ M.cmp = function()
   local cmp = require('cmp')
   local cmp_select = { behavior = cmp.SelectBehavior.Select }
   return {
+    ['<C-g>'] = cmp.mapping(cmp.mapping.open_docs()),
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
