@@ -53,6 +53,9 @@ M.buffer = function()
 
   -- close buffer
   vim.keymap.set('n', '<leader>bq', ':bdelete<CR>')
+
+  -- list buffers
+  vim.keymap.set('n', 'gb', ':ls<CR>:b<Space>')
 end
 
 M.tab = function()
@@ -162,7 +165,7 @@ M.lsp = function(opts)
   vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>lR", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set('n', '<leader>lf', require("vault.plugins.lsp.utils").select_formatter, opts)
-  vim.keymap.set("n", "<leader>lws", function() vim.lsp.buf.workspace_symbol() end, opts)
+  vim.keymap.set("n", "<leader>lS", function() vim.lsp.buf.workspace_symbol() end, opts)
   vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.signature_help() end, opts)
   vim.keymap.set('n', '<leader>lt', function() vim.lsp.buf.type_definition() end, opts)
   vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float({focusable = true }) end, opts)
