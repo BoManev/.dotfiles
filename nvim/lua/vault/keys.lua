@@ -103,6 +103,10 @@ M.search = function()
   -- jump/center/open fold
   vim.keymap.set("n", "n", "nzzzv")
   vim.keymap.set("n", "N", "Nzzzv")
+
+  -- cycle quickfix
+  vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { silent = true })
+  vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { silent = true })
 end
 
 M.refactor = function()
@@ -160,7 +164,7 @@ end
 M.lsp = function(opts)
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
-  vim.keymap.set('n', 'gI', function() vim.lsp.buf.implementation() end, opts)
+  vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set('n', '<leader>la', function() vim.lsp.buf.code_action() end, opts)
   vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end, opts)
@@ -255,7 +259,5 @@ return M
 
 
 
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 -- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")

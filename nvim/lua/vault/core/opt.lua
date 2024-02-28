@@ -57,6 +57,7 @@ vim.opt.spellfile = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
 
 -- netrw
 vim.g.netrw_banner = 0
+vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
 
 -- providers and builtins
 local builtins = {

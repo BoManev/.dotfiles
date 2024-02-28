@@ -1,14 +1,3 @@
-local tnight = {
-  'folke/tokyonight.nvim',
-  lazy = false,
-  priority = 1000,
-  opts = { style = 'moon' },
-  config = function()
-    vim.cmd([[colorscheme tokyonight]])
-    vim.o.background = 'dark'
-  end,
-}
-
 local kanagawa = {
   'rebelot/kanagawa.nvim',
   lazy = false,
@@ -18,9 +7,9 @@ local kanagawa = {
     require('kanagawa').setup({
       compile = false,  -- enable compiling the colorscheme
       undercurl = true, -- enable undercurls
-      commentStyle = { italic = true },
+      commentStyle = { italic = false },
       functionStyle = {},
-      keywordStyle = { italic = true },
+      keywordStyle = { italic = false },
       statementStyle = { bold = true },
       typeStyle = {},
       transparent = false,   -- do not set background color
@@ -33,7 +22,8 @@ local kanagawa = {
               comment = '#e77118',
             },
             ui = {
-              bg_gutter = "none"
+              bg_gutter = "none",
+              bg_visual = "#36454f"
             },
           },
         },
@@ -65,11 +55,9 @@ local kanagawa = {
       theme = "wave",  -- Load "wave" theme when 'background' option is not set
       background = {   -- map the value of 'background' option to a theme
         dark = "wave", -- try "dragon" !
-        light = "lotus"
       },
     })
 
-    -- vim.cmd([[colorscheme kanagawa]])
     vim.cmd("colorscheme kanagawa-wave")
   end,
 }
