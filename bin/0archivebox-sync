@@ -1,0 +1,20 @@
+#!/bin/bash
+
+branch_name="bookmarks-$(date +%Y%m%d%H%M%S)"
+current_dir=$(pwd)
+
+git checkout -b "$branch_name"
+
+cd ~/tools/selfhost/archivebox
+
+docker compose run archivebox list --json \
+    | jq -r '.[] | "- [\(.title)](\(.url)): \(.tags | split(",") | map(" #" + .) | join(""))"' \
+    > ~/hq/80-warehouse/bookmarks.md
+
+cd ~/hq
+git add 80-warehouse/bookmarks.md
+git commit -m "archivebox sync"
+
+git checkout master
+git rebase "$branch_name"
+
