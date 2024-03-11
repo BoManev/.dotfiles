@@ -25,7 +25,7 @@ padding = { x = 2, y = 2 }
 decorations = "None"
 #opacity = 1.0
 #blur = false
-startup_mode          = "Fullscreen"
+startup_mode          = "Maximized"
 #title = "Alacritty"
 #dynamic_title = true
 #class = { instance = "Alacritty", general = "Alacritty" }

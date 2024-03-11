@@ -18,6 +18,7 @@
     ~/.gitconfig: gitconfig
     ~/.config/alacritty/alacritty.toml: alacritty.toml
     ~/.config/tmux/tmux.conf: tmux.conf
+    ~/.config/mimeapps.list: mimeapps.list
 
 - shell:
   - systemctl --user enable after-start.service && systemctl --user start after-start.service
