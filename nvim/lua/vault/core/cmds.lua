@@ -66,16 +66,21 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-    group = augroup('buf_format'),
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
+-- Remove trailing whitespaces on save
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group = augroup('0strip-whitespace'),
+  pattern = "*",
+  callback = function(_ev)
+    local save_cursor = vim.fn.getpos(".")
+    vim.cmd([[%s/\s\+$//e]])
+    vim.fn.setpos(".", save_cursor)
+  end,
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
-    group = augroup("lsp_keys"),
-    callback = function(e)
-        local opts = { buffer = e.buf }
-        require("vault.keys").lsp(opts)
-    end
+  group = augroup("lsp_keys"),
+  callback = function(e)
+    local opts = { buffer = e.buf }
+    require("vault.keys").lsp(opts)
+  end
 })

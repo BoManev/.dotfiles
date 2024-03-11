@@ -32,6 +32,8 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'auto:1-2'
 vim.opt.colorcolumn = "81"
+vim.opt.cmdheight = 0
+
 -- mouse in visual mode
 vim.opt.mouse = 'v'
 vim.opt.guicursor = ''
@@ -58,6 +60,14 @@ vim.opt.spellfile = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
 -- netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
+
+-- folds
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = ":lua nvim_treesitter#foldexpr()"
+
+
+vim.wo.cursorline = true
+vim.opt.autochdir = true
 
 -- providers and builtins
 local builtins = {
