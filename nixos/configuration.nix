@@ -7,6 +7,9 @@
   #   cp ${./configuration.nix} /etc/nixos/configuration.nix
   #   cp ${./flake.nix} /etc/nixos/flake.nix
   # '';
+  environment.variables = {
+    XDG_CONFIG_HOME = "$HOME/.config";
+  };
   services.qemuGuest.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
