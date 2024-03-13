@@ -3,6 +3,7 @@ set -gx XDG_DATA_HOME $XDG_CONFIG_HOME/local/share
 set -gx XDG_CACHE_HOME $XDG_CONFIG_HOME/cache
 set -gx XDG_DESKTOP_DIR $HOME
 set -gx XDG_DOWNLOAD_DIR $HOME/Downloads
+
 set -gx EDITOR nvim
 set -gx BROWSER firefox
 set -gx PDFVIEWER zotero
@@ -15,7 +16,7 @@ set PATH $PATH $TOOLS/neovim/bin
 
 set PATH $PATH $HOME/.cargo/bin
 
-set -Ux GODIR $HOME/tools/go
+set -Ux GODIR $TOOLS/go
 set -Ux GOROOT $GODIR/go-1.21
 set -Ux GOPATH $GODIR/packages
 set PATH $PATH $GOROOT/bin
@@ -30,11 +31,34 @@ set PATH $PATH $DOTFILES/bin
 # sudo apt-get install build-essential libbz2-dev libncurses5-dev libncursesw5-dev libffi-dev libreadline-dev libssl-dev libsqlite3-dev liblzma-dev zlib1g-dev tk-dev
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+
+set -Ux FZF_DEFAULT_OPTS """
+  --height 75% --multi --reverse --margin=0,1
+  --bind ctrl-f:page-down,ctrl-b:page-up
+  --bind pgdn:preview-page-down,pgup:preview-page-up
+  --marker='✚' --pointer='▶' --prompt='❯ '
+  --no-separator --scrollbar='█' --border
+  --color bg+:#262626,fg+:#dadada,hl:#f09479,hl+:#f09479
+  --color border:#303030,info:#cfcfb0,header:#80a0ff,spinner:#36c692
+  --color prompt:#87afff,pointer:#ff5189,marker:#f09479
+"""
+set -Ux FZF_DEFAULT_COMMAND "fd --type f --color=never"
+set -Ux _ZO_MAXAGE "20000"
+set -Ux _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
+set -Ux _ZO_FZF_OPTS """
+    $FZF_DEFAULT_OPTS --no-multi --no-sort  --exit-0 --select-1
+"""
+if command -sq zoxide
+    zoxide init fish | source
+else
+    echo 'zoxide: command not found, please install it from https://github.com/ajeetdsouza/zoxide'
+end
+
 eval "$(pyenv virtualenv-init -)"
 
-atuin init fish | source
-
 # <A+e> - open line with $EDITOR
+# fish autosuggestions
 # <C+f> - accept suggestion
 # <A+f> - accept first suggested word
 
