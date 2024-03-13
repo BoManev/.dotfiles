@@ -1,2 +1,3 @@
 *.bak
 hq/target
+fish/fish_variables

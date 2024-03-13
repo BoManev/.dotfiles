@@ -11,7 +11,6 @@
 - link:
     ~/.config/fish: fish
     ~/.config/nvim: nvim
-    ~/.config/atuin/config.toml: atuin.toml
     ~/.XCompose: x11/.XCompose
     ~/.Xmodmap: x11/.Xmodmap
     ~/.config/systemd/user/after-start.service: systemd/after-start.service
