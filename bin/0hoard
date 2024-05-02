@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <URL>"
+    exit 1
+fi
+
+URL="$1"
+
+if ! echo "$URL" | grep -E '^https?://' >/dev/null; then
+    echo "invalid url!"
+    exit 1
+fi
+
+DOMAIN=$(echo "$URL" | sed -E 's|https?://||' | tr '/.' '-' )
+FILENAME="${DOMAIN//./-}.html"
+
+google-chrome --headless --incognito --dump-dom $URL | monolith - -I -b $URL -o $FILENAME
+

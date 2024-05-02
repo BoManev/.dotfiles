@@ -18,10 +18,7 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 
 -- indent
-vim.opt.autoindent = true
-vim.opt.copyindent = true
 vim.opt.smartindent = true
-vim.opt.preserveindent = true
 
 -- viz
 vim.opt.termguicolors = true
