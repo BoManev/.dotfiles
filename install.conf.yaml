@@ -18,6 +18,9 @@
     ~/.config/alacritty/alacritty.toml: alacritty.toml
     ~/.config/tmux/tmux.conf: tmux.conf
     ~/.config/mimeapps.list: mimeapps.list
+    ~/.wezterm.lua: wezterm.lua
+
 
 - shell:
   - systemctl --user enable after-start.service && systemctl --user start after-start.service
+  - [git submodule update --init --recursive, Installing submodules]
