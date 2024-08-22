@@ -27,7 +27,7 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = 'auto:1-2'
+vim.opt.signcolumn = 'auto:2'
 vim.opt.colorcolumn = "81"
 vim.opt.cmdheight = 0
 
@@ -66,26 +66,3 @@ vim.opt.foldexpr = ":lua nvim_treesitter#foldexpr()"
 vim.wo.cursorline = true
 vim.opt.autochdir = true
 
--- providers and builtins
-local builtins = {
-    'tar',
-    'zip',
-    'gzip',
-    'tarPlugin',
-    'zipPlugin',
-    'getscript',
-    'getscriptPlugin',
-    'vimball',
-    'vimballPlugin',
-    '2html_plugin',
-    'logipat',
-    'rrhelper',
-}
-for _, builtin in ipairs(builtins) do
-    vim.g['loaded_' .. builtin] = 1
-end
-
-local providers = { 'perl', 'node', 'ruby', 'python3', 'python' }
-for _, provider in ipairs(providers) do
-    vim.g['loaded_' .. provider .. '_provider'] = 0
-end
