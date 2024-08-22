@@ -1,7 +1,8 @@
 return {
     {
         "nvim-lua/plenary.nvim",
-        name = "plenary"
+--        name = "plenary",
+        commit = "5129a3693c482fcbc5ab99a7706ffc4360b995a0"
     },
 
     -- "github/copilot.vim",

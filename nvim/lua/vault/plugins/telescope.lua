@@ -1,14 +1,7 @@
-return {
-    "nvim-telescope/telescope.nvim",
+local M = {}
 
-    tag = "0.1.5",
+M.setup = function()
+  require("vault.keys").telescope()
+end
 
-    dependencies = {
-        "nvim-lua/plenary.nvim"
-    },
-
-    config = function()
-        require('telescope').setup({})
-        require("vault.keys").telescope()
-    end
-}
+return M

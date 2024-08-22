@@ -40,10 +40,13 @@ for _, provider in ipairs(providers) do
     vim.g['loaded_' .. provider .. '_provider'] = 0
 end
 require("lazy").setup({
-    spec = "vault.plugins",
+    spec = "vault.plugins.spec",
     performance = {
         rtp = {
             disabled_plugins = builtins
         }
-    }
+    },
+  change_detection = {
+    notify = false,
+  },
 })
