@@ -83,3 +83,10 @@ abbr -a rm 'rm -v'
 abbr -a c 'clear -x' # [c]lean
 abbr -a f 'clear' # [f]flush
 abbr -a --position anywhere dots '~/projects/.dotfiles/'
+abbr -a kubectl 'minikube kubectl --'
+
+
+if test -f /home/bo/tools/google-cloud-sdk/path.fish.inc
+    source /home/bo/tools/google-cloud-sdk/path.fish.inc
+end
+
