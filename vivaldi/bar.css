@@ -1,0 +1,4 @@
+.toolbar-spacer-flexible ~ .UrlBar-AddressField,
+.toolbar-spacer-panel ~ .UrlBar-AddressField {
+  flex-grow: 10;
+}
