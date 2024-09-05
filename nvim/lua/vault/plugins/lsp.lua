@@ -1,6 +1,12 @@
 local M = {}
 
 M.setup = function()
+    require("neodev").setup {
+    -- library = {
+    --   plugins = { "nvim-dap-ui" },
+    --   types = true,
+    -- },
+  }
   local cmp = require('cmp')
   local cmp_lsp = require("cmp_nvim_lsp")
   local capabilities = vim.tbl_deep_extend(
@@ -25,20 +31,6 @@ M.setup = function()
           capabilities = capabilities
         }
       end,
-
-      ["lua_ls"] = function()
-        local lspconfig = require("lspconfig")
-        lspconfig.lua_ls.setup {
-          capabilities = capabilities,
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { "vim", "it", "describe", "before_each", "after_each" },
-              }
-            }
-          }
-        }
-      end,
     }
   })
 
@@ -60,28 +52,11 @@ M.setup = function()
       })
   })
 
-  vim.diagnostic.config({
-    -- update_in_insert = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  })
-  --    local null_ls = require("null-ls")
-  --
-  --    null_ls.setup({
-  --      sources = {
-  --      },
-  --    })
 end
 
 M.select_formatter = function(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
-  local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
   local formatters = {}
 
   for _, c in pairs(clients) do

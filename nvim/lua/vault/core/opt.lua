@@ -27,7 +27,10 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = 'auto:2'
+-- Disable sign column chars for empty lines
+vim.o.fillchars = 'eob: '
+-- Use a signcolumn with 1 space for git status
+vim.o.signcolumn = 'yes:1'
 vim.opt.colorcolumn = "81"
 vim.opt.cmdheight = 0
 
@@ -49,6 +52,7 @@ vim.opt.undofile = true
 vim.opt.isfname:append("@-@")
 vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 vim.opt.wildmenu = true
+vim.o.wildmode = 'list:longest'
 vim.opt.shell = "/bin/fish"
 vim.opt.confirm = true
 vim.opt.updatetime = 50
@@ -62,7 +66,17 @@ vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = ":lua nvim_treesitter#foldexpr()"
 
-
 vim.wo.cursorline = true
 vim.opt.autochdir = true
 
+vim.diagnostic.config({
+  signs = false,
+  virtual_text = {
+    prefix = '◦',
+    spacing = 0,
+  },
+  float = {
+    border = 'rounded',
+    source = true,
+  },
+})
